@@ -11,7 +11,7 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Appli
         public static void RegisterAppControllers(this IServiceCollection services)
         {
             //Controlles
-            services.AddScoped(typeof(IPagamentoController), typeof(PagamentoController));
+            services.AddScoped(typeof(IController<Domain.Entities.ProcessamentoImagem>), typeof(ProcessamentoImagemController));
         }
     }
 }

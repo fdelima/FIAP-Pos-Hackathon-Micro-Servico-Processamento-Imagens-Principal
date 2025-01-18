@@ -52,7 +52,7 @@ namespace TestProject.MockData
                         IdNotificacao = Guid.NewGuid(),
                         Data = DateTime.Now,
                         Mensagem = "Mensagem de teste",
-                        IdDispositivo = Guid.NewGuid()
+                        Usuario = "usuario@test.com"
                     });
                 }
                 var param = new PagingQueryParam<Notificacao>() { CurrentPage = 1, Take = 10 };
@@ -80,7 +80,7 @@ namespace TestProject.MockData
                         IdNotificacao = Guid.NewGuid(),
                         Data = DateTime.Now,
                         Mensagem = "Mensagem de teste",
-                        IdDispositivo = Guid.Empty
+                        Usuario = string.Empty
                     });
                 }
                 var param = new PagingQueryParam<Notificacao>() { CurrentPage = 1, Take = 10 };

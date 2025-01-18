@@ -13,23 +13,17 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Infra
 
         public virtual DbSet<Notificacao> Notificacaos { get; set; }
 
-        public virtual DbSet<Pedido> Pedidos { get; set; }
-
-        public virtual DbSet<MercadoPagoWebhoock> MercadoPagoWebhoocks { get; set; }
+        public virtual DbSet<ProcessamentoImagem> Pedidos { get; set; }        
 
         #endregion DbSets
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //TODO: Map :: 2 - Adicione sua configuração aqui
-
-            //modelBuilder.Entity<Pedido>().ToCollection("pedido");
-            //modelBuilder.Entity<Notificacao>().ToCollection("notificacao");
-
+                        
             modelBuilder.ApplyConfiguration(new NotificacaoMap());
             modelBuilder.ApplyConfiguration(new PedidoMap());
-            modelBuilder.ApplyConfiguration(new MercadoPagoWebhoockMap());
-
+            
             base.OnModelCreating(modelBuilder);
 
         }

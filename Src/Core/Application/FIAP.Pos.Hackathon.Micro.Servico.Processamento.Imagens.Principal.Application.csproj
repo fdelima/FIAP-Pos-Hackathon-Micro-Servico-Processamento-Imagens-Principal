@@ -7,9 +7,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="UseCases\MercadoPago\**" />
 	  <Compile Remove="UseCases\Notificacao\**" />
+	  <Compile Remove="UseCases\Pedido\**" />
+	  <EmbeddedResource Remove="UseCases\MercadoPago\**" />
 	  <EmbeddedResource Remove="UseCases\Notificacao\**" />
+	  <EmbeddedResource Remove="UseCases\Pedido\**" />
+	  <None Remove="UseCases\MercadoPago\**" />
 	  <None Remove="UseCases\Notificacao\**" />
+	  <None Remove="UseCases\Pedido\**" />
 	</ItemGroup>
 
 	<ItemGroup>

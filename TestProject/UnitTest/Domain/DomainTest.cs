@@ -33,7 +33,7 @@ namespace TestProject.UnitTest.Domain
 
             //Assert
             Assert.Contains(typeof(Notificacao), result);
-            Assert.Contains(typeof(Pedido), result);
+            Assert.Contains(typeof(ProcessamentoImagem), result);
         }
 
         [Fact]
@@ -41,10 +41,10 @@ namespace TestProject.UnitTest.Domain
         {
             //Arrange
             //Act
-            var resut = ModelResultFactory.DuplicatedResult<Pedido>();
+            var resut = ModelResultFactory.DuplicatedResult<ProcessamentoImagem>();
 
             //Assert
-            Assert.Contains(BusinessMessages.DuplicatedError<Pedido>(), resut.ListErrors());
+            Assert.Contains(BusinessMessages.DuplicatedError<ProcessamentoImagem>(), resut.ListErrors());
         }
 
         [Fact]

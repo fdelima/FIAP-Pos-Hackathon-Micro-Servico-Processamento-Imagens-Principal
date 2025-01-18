@@ -36,7 +36,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="BDD\Features\ControlarPagamentos.feature">
+	  <None Update="BDD\Features\ControlarProcessamentoImagens.feature">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>

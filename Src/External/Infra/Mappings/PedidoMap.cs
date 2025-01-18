@@ -5,29 +5,33 @@ using MongoDB.EntityFrameworkCore.Extensions;
 
 namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Infra.Mappings;
 
-internal class PedidoMap : IEntityTypeConfiguration<Pedido>
+internal class PedidoMap : IEntityTypeConfiguration<ProcessamentoImagem>
 {
-    public void Configure(EntityTypeBuilder<Pedido> builder)
+    public void Configure(EntityTypeBuilder<ProcessamentoImagem> builder)
     {
-        builder.ToCollection("pedido");
-        builder.HasKey(e => e.IdPedido);
+        builder.ToCollection("processamentoimagem");
+        builder.HasKey(e => e.IdProcessamentoImagem);
 
-        builder.Property(e => e.IdPedido)
+        builder.Property(e => e.IdProcessamentoImagem)
             .ValueGeneratedNever()
             .HasElementName("_id");
         builder.Property(e => e.Data)
             .HasElementName("data");
-        builder.Property(e => e.DataStatusPedido)
-            .HasElementName("data_status_pedido");
-        builder.Property(e => e.IdCliente).HasElementName("id_cliente");
-        builder.Property(e => e.IdDispositivo).HasElementName("id_dispositivo");
-        builder.Property(e => e.Status)
-            .HasMaxLength(50)
-            .HasElementName("status");
-        builder.Property(e => e.StatusPagamento)
-            .HasMaxLength(50)
-            .HasElementName("status_pagamento");
-        builder.Property(e => e.DataStatusPagamento)
-            .HasElementName("data_status_pagamento");
+        builder.Property(e => e.Usuario)
+            .HasElementName("usuario");
+        builder.Property(e => e.DataEnvio)
+            .HasElementName("data_recebido");
+        builder.Property(e => e.DataEnviadoFila)
+            .HasElementName("data_enviado_fila");
+        builder.Property(e => e.DataInicioProcessamento)
+            .HasElementName("data_inicio_processamento");
+        builder.Property(e => e.DataFimProcessamento)
+            .HasElementName("data_fim_processamento");
+        builder.Property(e => e.NomeArquivo)
+            .HasElementName("nome_arquivo");
+        builder.Property(e => e.TamanhoArquivo)
+            .HasElementName("tamanho_arquivo");
+        builder.Property(e => e.NomeArquivoZipDownload)
+            .HasElementName("nome_arquivo_zip_download"); ;
     }
 }

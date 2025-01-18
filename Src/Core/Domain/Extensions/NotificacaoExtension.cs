@@ -14,7 +14,7 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
         public static Expression<Func<Notificacao, bool>> ConsultRule(this PagingQueryParam<Notificacao> param)
         {
             return x => (x.IdNotificacao.Equals(param.ObjFilter.IdNotificacao) || param.ObjFilter.IdNotificacao.Equals(default)) &&
-                        (x.IdDispositivo.Equals(param.ObjFilter.IdDispositivo) || param.ObjFilter.IdDispositivo.Equals(default)) &&
+                        (x.Usuario.Equals(param.ObjFilter.Usuario) || param.ObjFilter.Usuario.Equals(default)) &&
                         (x.Mensagem.Contains(param.ObjFilter.Mensagem) || string.IsNullOrWhiteSpace(param.ObjFilter.Mensagem)) &&
                         (x.Data.Equals(param.ObjFilter.Data) || param.ObjFilter.Data.Equals(default));
         }
@@ -29,7 +29,7 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
                 case "idnotificacao":
                     return fa => fa.IdNotificacao;
                 case "iddispositivo":
-                    return fa => fa.IdDispositivo;
+                    return fa => fa.Usuario;
                 case "mensagem":
                     return fa => fa.Mensagem;
                 default: return fa => fa.Data;

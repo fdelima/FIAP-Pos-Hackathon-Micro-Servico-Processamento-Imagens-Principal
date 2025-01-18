@@ -29,13 +29,13 @@ namespace TestProject.IntegrationTest.External
         /// </summary>
         [Theory]
         [MemberData(nameof(ObterDados), enmTipo.Inclusao, true, 3)]
-        public async void InserirComDadosValidos(Guid idDispositivo, string mensagem)
+        public async void InserirComDadosValidos(string usuario, string mensagem)
         {
             ///Arrange
             var notificacao = new Notificacao
             {
                 IdNotificacao = Guid.NewGuid(),
-                IdDispositivo = idDispositivo,
+                Usuario = usuario,
                 Mensagem = mensagem,
                 Data = DateTime.Now
             };
@@ -61,13 +61,13 @@ namespace TestProject.IntegrationTest.External
         /// </summary>
         [Theory]
         [MemberData(nameof(ObterDados), enmTipo.Alteracao, true, 3)]
-        public async void AlterarComDadosValidos(Guid idNotificacao, Guid idDispositivo, string mensagem)
+        public async void AlterarComDadosValidos(Guid idNotificacao, string usuario, string mensagem)
         {
             ///Arrange
             var notificacao = new Notificacao
             {
                 IdNotificacao = idNotificacao,
-                IdDispositivo = idDispositivo,
+                Usuario = usuario,
                 Mensagem = mensagem,
                 Data = DateTime.Now
             };
@@ -105,13 +105,13 @@ namespace TestProject.IntegrationTest.External
         /// </summary>
         [Theory]
         [MemberData(nameof(ObterDados), enmTipo.Alteracao, true, 1)]
-        public async void DeletarNotificacao(Guid idNotificacao, Guid idDispositivo, string mensagem)
+        public async void DeletarNotificacao(Guid idNotificacao, string usuario, string mensagem)
         {
             ///Arrange
             var notificacao = new Notificacao
             {
                 IdNotificacao = idNotificacao,
-                IdDispositivo = idDispositivo,
+                Usuario = usuario,
                 Mensagem = mensagem,
                 Data = DateTime.Now
             };
@@ -144,13 +144,13 @@ namespace TestProject.IntegrationTest.External
         /// </summary>
         [Theory]
         [MemberData(nameof(ObterDados), enmTipo.Alteracao, true, 1)]
-        public async void ConsultarNotificacaoPorId(Guid idNotificacao, Guid idDispositivo, string mensagem)
+        public async void ConsultarNotificacaoPorId(Guid idNotificacao, string usuario, string mensagem)
         {
             ///Arrange
             var notificacao = new Notificacao
             {
                 IdNotificacao = idNotificacao,
-                IdDispositivo = idDispositivo,
+                Usuario = usuario,
                 Mensagem = mensagem,
                 Data = DateTime.Now
             };

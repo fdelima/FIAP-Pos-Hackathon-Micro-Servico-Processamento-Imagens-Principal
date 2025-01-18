@@ -1,7 +1,7 @@
-﻿using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Application.UseCases.MercadoPago.Commands;
-using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Application.UseCases.MercadoPago.Handlers;
-using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Application.UseCases.Pedido.Commands;
-using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Application.UseCases.Pedido.Handlers;
+﻿using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Application.UseCases.ProcessamentoImagem.Commands;
+using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Application.UseCases.ProcessamentoImagem.Handlers;
+using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain;
+using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Entities;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Models;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,10 +17,13 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Appli
         {
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
 
-            //Pedido
-            services.AddScoped<IRequestHandler<ReceberPedidoCommand, ModelResult>, ReceberPedidoHandler>();
-            services.AddScoped<IRequestHandler<MercadoPagoWebhoockCommand, ModelResult>, MercadoPagoWebhoockHandler>();
-            services.AddScoped<IRequestHandler<PedidoConsultarPagamentoCommand, ModelResult>, PedidoConsultarPagamentoHandler>();
+            //ProcessamentoImagem
+            services.AddScoped<IRequestHandler<ProcessamentoImagemPostCommand, ModelResult>, ProcessamentoImagemPostHandler>();
+            services.AddScoped<IRequestHandler<ProcessamentoImagemPutCommand, ModelResult>, ProcessamentoImagemPutHandler>();
+            services.AddScoped<IRequestHandler<ProcessamentoImagemDeleteCommand, ModelResult>, ProcessamentoImagemDeleteHandler>();
+            services.AddScoped<IRequestHandler<ProcessamentoImagemFindByIdCommand, ModelResult>, ProcessamentoImagemFindByIdHandler>();
+            services.AddScoped<IRequestHandler<ProcessamentoImagemGetItemsCommand, PagingQueryResult<ProcessamentoImagem>>, ProcessamentoImagemGetItemsHandler>();
+
         }
     }
 }

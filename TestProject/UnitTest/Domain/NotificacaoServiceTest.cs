@@ -34,12 +34,12 @@ namespace TestProject.UnitTest.Domain
         /// </summary>
         [Theory]
         [MemberData(nameof(ObterDados), enmTipo.Inclusao, true, 3)]
-        public async Task InserirComDadosValidos(Guid idDispositivo, string mensagem)
+        public async Task InserirComDadosValidos(string usuario, string mensagem)
         {
             ///Arrange
             var notificacao = new Notificacao
             {
-                IdDispositivo = idDispositivo,
+                Usuario = usuario,
                 Mensagem = mensagem
             };
             var domainService = new NotificacaoService(_notificacaoGatewayMock, _validator);
@@ -56,12 +56,12 @@ namespace TestProject.UnitTest.Domain
         /// </summary>
         [Theory]
         [MemberData(nameof(ObterDados), enmTipo.Inclusao, false, 3)]
-        public async Task InserirComDadosInvalidos(Guid idDispositivo, string mensagem)
+        public async Task InserirComDadosInvalidos(string usuario, string mensagem)
         {
             ///Arrange
             var notificacao = new Notificacao
             {
-                IdDispositivo = idDispositivo,
+                Usuario = usuario,
                 Mensagem = mensagem
             };
             var domainService = new NotificacaoService(_notificacaoGatewayMock, _validator);
@@ -78,13 +78,13 @@ namespace TestProject.UnitTest.Domain
         /// </summary>
         [Theory]
         [MemberData(nameof(ObterDados), enmTipo.Alteracao, true, 3)]
-        public async Task AlterarComDadosValidos(Guid idNotificacao, Guid idDispositivo, string mensagem)
+        public async Task AlterarComDadosValidos(Guid idNotificacao, string usuario, string mensagem)
         {
             ///Arrange
             var notificacao = new Notificacao
             {
                 IdNotificacao = idNotificacao,
-                IdDispositivo = idDispositivo,
+                Usuario = usuario,
                 Mensagem = mensagem
             };
 
@@ -110,13 +110,13 @@ namespace TestProject.UnitTest.Domain
         /// </summary>
         [Theory]
         [MemberData(nameof(ObterDados), enmTipo.Alteracao, false, 3)]
-        public async Task AlterarComDadosInvalidos(Guid idNotificacao, Guid idDispositivo, string mensagem)
+        public async Task AlterarComDadosInvalidos(Guid idNotificacao, string usuario, string mensagem)
         {
             ///Arrange
             var notificacao = new Notificacao
             {
                 IdNotificacao = idNotificacao,
-                IdDispositivo = idDispositivo,
+                Usuario = usuario,
                 Mensagem = mensagem
             };
 
@@ -138,13 +138,13 @@ namespace TestProject.UnitTest.Domain
         /// </summary>
         [Theory]
         [MemberData(nameof(ObterDados), enmTipo.Alteracao, true, 3)]
-        public async Task DeletarNotificacao(Guid idNotificacao, Guid idDispositivo, string mensagem)
+        public async Task DeletarNotificacao(Guid idNotificacao, string usuario, string mensagem)
         {
             ///Arrange
             var notificacao = new Notificacao
             {
                 IdNotificacao = idNotificacao,
-                IdDispositivo = idDispositivo,
+                Usuario = usuario,
                 Mensagem = mensagem
             };
 
@@ -169,13 +169,13 @@ namespace TestProject.UnitTest.Domain
         /// </summary>
         [Theory]
         [MemberData(nameof(ObterDados), enmTipo.Alteracao, true, 3)]
-        public async Task ConsultarNotificacaoPorIdComDadosValidos(Guid idNotificacao, Guid idDispositivo, string mensagem)
+        public async Task ConsultarNotificacaoPorIdComDadosValidos(Guid idNotificacao, string usuario, string mensagem)
         {
             ///Arrange
             var notificacao = new Notificacao
             {
                 IdNotificacao = idNotificacao,
-                IdDispositivo = idDispositivo,
+                Usuario = usuario,
                 Mensagem = mensagem
             };
 
@@ -198,13 +198,13 @@ namespace TestProject.UnitTest.Domain
         /// </summary>
         [Theory]
         [MemberData(nameof(ObterDados), enmTipo.Alteracao, true, 3)]
-        public async Task ConsultarNotificacaoPorIdComDadosInvalidos(Guid idNotificacao, Guid idDispositivo, string mensagem)
+        public async Task ConsultarNotificacaoPorIdComDadosInvalidos(Guid idNotificacao, string usuario, string mensagem)
         {
             ///Arrange
             var notificacao = new Notificacao
             {
                 IdNotificacao = idNotificacao,
-                IdDispositivo = idDispositivo,
+                Usuario = usuario,
                 Mensagem = mensagem
             };
 

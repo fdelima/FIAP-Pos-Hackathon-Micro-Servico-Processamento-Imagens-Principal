@@ -1,7 +1,8 @@
-﻿using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Entities;
+﻿using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain;
+using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Entities;
+using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Extensions;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Interfaces;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Models;
-using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Models.MercadoPago;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -9,59 +10,108 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Api.C
 {
     //TODO: Controller :: 1 - Duplicar esta controller de exemplo e trocar o nome da entidade.
     /// <summary>
-    /// Controller dos Pedidos cadastrados
+    /// Controller dos ProcessamentoImagems cadastrados
     /// </summary>
     [Route("api/[Controller]")]
-    public class PagamentoController : ApiController
+    public class ProcessamentoImagemController : ApiController
     {
-        private readonly IPagamentoController _controller;
+        private readonly IController<ProcessamentoImagem> _controller;
 
         /// <summary>
-        /// Construtor do controller dos Pedidos cadastrados
+        /// Construtor do controller dos ProcessamentoImagems cadastrados
         /// </summary>
-        public PagamentoController(IPagamentoController controller)
+        public ProcessamentoImagemController(IController<ProcessamentoImagem> controller)
         {
             _controller = controller;
         }
 
         /// <summary>
-        /// Consulta o pagamento do pedido.
+        /// Retorna os ProcessamentoImagems cadastrados
         /// </summary>
-        /// <param name="id">Identificador do Pedido.</param>
-        /// <returns>Retorna o result do Pedido cadastrado.</returns>
-        /// <response code="200">Pedido encontrado.</response>
-        /// <response code="400">Pedido não encontrado.</response>
-        [HttpGet("Consultar/Pedido/{id}")]
+        [HttpGet]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<PagingQueryResult<ProcessamentoImagem>> Get(int currentPage = 1, int take = 10)
+        {
+            PagingQueryParam<ProcessamentoImagem> param = new PagingQueryParam<ProcessamentoImagem>() { CurrentPage = currentPage, Take = take };
+            return await _controller.GetItemsAsync(param, param.SortProp());
+        }
+
+        /// <summary>
+        /// Recupera o ProcessamentoImagem cadastrado pelo seu Id
+        /// </summary>
+        /// <returns>ProcessamentoImagem encontrada</returns>
+        /// <response code="200">ProcessamentoImagem encontrada ou nulo</response>
+        /// <response code="400">Erro ao recuperar ProcessamentoImagem cadastrado</response>
+        [HttpGet("{id}")]
         [ProducesResponseType(typeof(ModelResult), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(ModelResult), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<IActionResult> ConsultarPagamentoAsync(Guid id)
+        public async Task<IActionResult> FindById(Guid id)
         {
-            return ExecuteCommand(await _controller.ConsultarPagamentoAsync(id));
+            return ExecuteCommand(await _controller.FindByIdAsync(id));
         }
 
         /// <summary>
-        ///  Notificação de pedido aguardando pagamento.
+        ///  Consulta os ProcessamentoImagems cadastrados no sistema com o filtro informado.
         /// </summary>
-        [HttpPost("Pedido")]
+        /// <param name="filter">Filtros para a consulta dos ProcessamentoImagems</param>
+        /// <returns>Retorna as ProcessamentoImagems cadastrados a partir dos parametros informados</returns>
+        /// <response code="200">Listagem dos ProcessamentoImagems recuperada com sucesso</response>
+        /// <response code="400">Erro ao recuperar listagem dos ProcessamentoImagems cadastrados</response>
+        [HttpPost("consult")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<IActionResult> ReceberPedido(Pedido notificacao)
+        public async Task<PagingQueryResult<ProcessamentoImagem>> Consult(PagingQueryParam<ProcessamentoImagem> param)
         {
-            return ExecuteCommand(await _controller.ReceberPedido(notificacao));
+            return await _controller.ConsultItemsAsync(param, param.ConsultRule(), param.SortProp());
         }
-
-        /* [ Fazer caso de tempo ]*/
 
         /// <summary>
-        ///  Mercado pago recebimento de notificação webhook.
-        ///  https://www.mercadopago.com.br/developers/pt/docs/your-integrations/notifications/webhooks#editor_13
+        /// Inseri o ProcessamentoImagem cadastrado.
         /// </summary>
-        [HttpPost("MercadoPagoWebhoock")]
+        /// <param name="model">Objeto contendo as informações para inclusão.</param>
+        /// <returns>Retorna o result do ProcessamentoImagem cadastrado.</returns>
+        /// <response code="200">ProcessamentoImagem inserida com sucesso.</response>
+        /// <response code="400">Erros de validação dos parâmetros para inserção do ProcessamentoImagem.</response>
+        [HttpPost]
+        [ProducesResponseType(typeof(ModelResult), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<IActionResult> MercadoPagoWebhoock(MercadoPagoWebhoockModel notificacao)
+        public async Task<IActionResult> Post(ProcessamentoImagem model)
         {
-            var mercadoPagoWebhoock = (MercadoPagoWebhoock)notificacao;
-            return ExecuteCommand(await _controller.MercadoPagoWebhoock(mercadoPagoWebhoock, Guid.Parse(notificacao.Data.Id), Request.Headers));
+            return ExecuteCommand(await _controller.PostAsync(model));
         }
+
+        /// <summary>
+        /// Altera o ProcessamentoImagem cadastrado.
+        /// </summary>
+        /// <param name="id">Identificador do ProcessamentoImagem cadastrado.</param>
+        /// <param name="model">Objeto contendo as informações para modificação.</param>
+        /// <returns>Retorna o result do ProcessamentoImagem cadastrado.</returns>
+        /// <response code="200">ProcessamentoImagem alterada com sucesso.</response>
+        /// <response code="400">Erros de validação dos parâmetros para alteração do ProcessamentoImagem.</response>
+        [HttpPut("{id}")]
+        [ProducesResponseType(typeof(ModelResult), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(ModelResult), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<IActionResult> Put(Guid id, ProcessamentoImagem model)
+        {
+            return ExecuteCommand(await _controller.PutAsync(id, model));
+        }
+
+        /// <summary>
+        /// Deleta o ProcessamentoImagem cadastrado.
+        /// </summary>
+        /// <param name="id">Identificador do ProcessamentoImagem cadastrado.</param>
+        /// <returns>Retorna o result do ProcessamentoImagem cadastrado.</returns>
+        /// <response code="200">ProcessamentoImagem deletada com sucesso.</response>
+        /// <response code="400">Erros de validação dos parâmetros para deleção do ProcessamentoImagem.</response>
+        [HttpDelete("{id}")]
+        [ProducesResponseType(typeof(ModelResult), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(ModelResult), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            return ExecuteCommand(await _controller.DeleteAsync(id));
+        }
+
     }
 }

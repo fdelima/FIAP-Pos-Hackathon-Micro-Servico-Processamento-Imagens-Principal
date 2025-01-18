@@ -15,7 +15,7 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Appli
 
             //Validators
             services.AddScoped(typeof(IValidator<Notificacao>), typeof(NotificacaoValidator));
-            services.AddScoped(typeof(IValidator<Pedido>), typeof(PedidoValidator));
+            services.AddScoped(typeof(IValidator<ProcessamentoImagem>), typeof(PedidoValidator));
         }
     }
 }

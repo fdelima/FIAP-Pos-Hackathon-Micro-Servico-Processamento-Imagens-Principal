@@ -27,7 +27,7 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
 
         public string Mensagem { get; set; } = null!;
 
-        public Guid IdDispositivo { get; set; }
+        public string Usuario { get; set; }
 
     }
 }
