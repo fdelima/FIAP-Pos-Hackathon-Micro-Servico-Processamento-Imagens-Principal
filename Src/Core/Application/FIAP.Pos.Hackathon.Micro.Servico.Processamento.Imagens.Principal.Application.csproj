@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="UseCases\Notificacao\**" />
+	  <EmbeddedResource Remove="UseCases\Notificacao\**" />
+	  <None Remove="UseCases\Notificacao\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="MediatR" Version="12.4.1" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Domain\FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.csproj" />
+	</ItemGroup>
+
+</Project>

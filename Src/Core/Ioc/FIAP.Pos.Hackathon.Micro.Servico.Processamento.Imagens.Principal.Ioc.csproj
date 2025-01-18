@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- Somente para teste remover -->
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.36" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Application\FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Application.csproj" />
+		<ProjectReference Include="..\..\External\Infra\FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Infra.csproj" />
+	</ItemGroup>
+
+</Project>
