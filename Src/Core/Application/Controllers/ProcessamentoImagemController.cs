@@ -1,9 +1,11 @@
 ﻿using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Application.UseCases.ProcessamentoImagem.Commands;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain;
+using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Entities;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Interfaces;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Models;
 using FluentValidation;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using System.Linq.Expressions;
 
 namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Application.Controllers
@@ -11,7 +13,7 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Appli
     /// <summary>
     /// Regras da aplicação referente ao ProcessamentoImagem
     /// </summary>
-    public class ProcessamentoImagemController : IController<Domain.Entities.ProcessamentoImagem>
+    public class ProcessamentoImagemController : IProcessamentoImagemController
     {
         private readonly IMediator _mediator;
         private readonly IValidator<Domain.Entities.ProcessamentoImagem> _validator;
@@ -44,7 +46,7 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Appli
         /// Envia a entidade para inserção ao domínio
         /// </summary>
         /// <param name="entity">Entidade</param>
-        public virtual async Task<ModelResult> PostAsync(Domain.Entities.ProcessamentoImagem entity)
+        public virtual async Task<ModelResult> PostAsync(ProcessamentoImagem entity)
         {
             if (entity == null) throw new InvalidOperationException($"Necessário informar os dados de processamento de imagem");
 
@@ -52,6 +54,35 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Appli
 
             if (ValidatorResult.IsValid)
             {
+                ProcessamentoImagemPostCommand command = new(entity);
+                return await _mediator.Send(command);
+            }
+
+            return ValidatorResult;
+        }
+
+        /// <summary>
+        /// Envia a entidade para inserção ao domínio
+        /// </summary>
+        /// <param name="entity">Entidade</param>
+        public virtual async Task<ModelResult> PostAsync(ProcessamentoImagemModel entity)
+        {
+            if (entity == null) throw new InvalidOperationException($"Necessário informar os dados de processamento de imagem");
+
+            ModelResult ValidatorResult = await ValidateAsync(entity);
+
+            if (ValidatorResult.IsValid)
+            {
+                if (entity.FormFile.Length > 0)
+                {
+                    var filePath = Path.GetTempFileName();
+
+                    using (var stream = File.Create(filePath))
+                    {
+                        await entity.FormFile.CopyToAsync(stream);
+                    }
+                }
+
                 ProcessamentoImagemPostCommand command = new(entity);
                 return await _mediator.Send(command);
             }
@@ -126,5 +157,6 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Appli
             return await _mediator.Send(command);
         }
 
+        
     }
 }

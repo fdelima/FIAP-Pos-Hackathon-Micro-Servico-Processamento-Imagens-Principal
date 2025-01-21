@@ -15,12 +15,12 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Api.C
     [Route("api/[Controller]")]
     public class ProcessamentoImagemController : ApiController
     {
-        private readonly IController<ProcessamentoImagem> _controller;
+        private readonly IProcessamentoImagemController _controller;
 
         /// <summary>
         /// Construtor do controller dos ProcessamentoImagems cadastrados
         /// </summary>
-        public ProcessamentoImagemController(IController<ProcessamentoImagem> controller)
+        public ProcessamentoImagemController(IProcessamentoImagemController controller)
         {
             _controller = controller;
         }
@@ -75,7 +75,7 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Api.C
         [HttpPost]
         [ProducesResponseType(typeof(ModelResult), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Post(ProcessamentoImagem model)
+        public async Task<IActionResult> Post(ProcessamentoImagemModel model)
         {
             return ExecuteCommand(await _controller.PostAsync(model));
         }
