@@ -14,15 +14,14 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
         public static Expression<Func<ProcessamentoImagem, bool>> ConsultRule(this PagingQueryParam<ProcessamentoImagem> param)
         {
             return x => (x.IdProcessamentoImagem.Equals(param.ObjFilter.IdProcessamentoImagem) || param.ObjFilter.IdProcessamentoImagem.Equals(default)) &&
-                        (x.Data.Equals(param.ObjFilter.Data) || param.ObjFilter.Data.Equals(default)) &&
-                        (x.Usuario.Equals(param.ObjFilter.Usuario) || param.ObjFilter.Usuario.Equals(default)) &&
-                        (x.DataEnvio.Equals(param.ObjFilter.DataEnvio) || param.ObjFilter.DataEnvio.Equals(default)) &&
-                        (x.DataEnviadoFila.Equals(param.ObjFilter.DataEnviadoFila) || param.ObjFilter.DataEnviadoFila.Equals(default) || param.ObjFilter.DataEnviadoFila.Equals(null)) &&
-                        (x.DataInicioProcessamento.Equals(param.ObjFilter.DataInicioProcessamento) || param.ObjFilter.DataInicioProcessamento.Equals(default) || param.ObjFilter.DataInicioProcessamento.Equals(null)) &&
-                        (x.DataFimProcessamento.Equals(param.ObjFilter.DataFimProcessamento) || param.ObjFilter.DataFimProcessamento.Equals(default) || param.ObjFilter.DataFimProcessamento.Equals(null)) &&
-                        (x.NomeArquivo.Equals(param.ObjFilter.NomeArquivo) || param.ObjFilter.NomeArquivo.Equals(default)) &&
-                        (x.TamanhoArquivo.Equals(param.ObjFilter.TamanhoArquivo) || param.ObjFilter.TamanhoArquivo.Equals(default)) &&
-                        (x.NomeArquivoZipDownload.Equals(param.ObjFilter.NomeArquivoZipDownload) || param.ObjFilter.NomeArquivoZipDownload.Equals(default));
+                        (param.ObjFilter.Data.Equals(default) || x.Data.Equals(param.ObjFilter.Data)) &&
+                        (param.ObjFilter.Usuario == null || param.ObjFilter.Usuario.Equals(default) || x.Usuario.Equals(param.ObjFilter.Usuario)) &&
+                        (param.ObjFilter.DataEnvio.Equals(default) || x.DataEnvio.Equals(param.ObjFilter.DataEnvio)) &&
+                        (param.ObjFilter.DataEnviadoFila == null || param.ObjFilter.DataEnviadoFila.Equals(null) || param.ObjFilter.DataEnviadoFila.Equals(default) || x.DataEnviadoFila.Equals(param.ObjFilter.DataEnviadoFila)) &&
+                        (param.ObjFilter.DataInicioProcessamento == null || param.ObjFilter.DataInicioProcessamento.Equals(default) || x.DataInicioProcessamento.Equals(param.ObjFilter.DataInicioProcessamento)) &&
+                        (param.ObjFilter.DataFimProcessamento == null || param.ObjFilter.DataFimProcessamento.Equals(default) || x.DataFimProcessamento.Equals(param.ObjFilter.DataFimProcessamento)) &&
+                        (param.ObjFilter.NomeArquivo == null || param.ObjFilter.NomeArquivo.Equals(default) || x.NomeArquivo.Equals(param.ObjFilter.NomeArquivo)) &&
+                        (param.ObjFilter.TamanhoArquivo == null || param.ObjFilter.TamanhoArquivo.Equals(default) || x.TamanhoArquivo.Equals(param.ObjFilter.TamanhoArquivo));
         }
 
         /// <summary>

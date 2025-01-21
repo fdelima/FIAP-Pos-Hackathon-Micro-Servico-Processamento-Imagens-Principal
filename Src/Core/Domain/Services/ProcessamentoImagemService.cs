@@ -56,12 +56,13 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
                     return ValidatorResult;
 
                 await _gateway.InsertAsync(entity);
-                await _gateway.InsertAsync(new Notificacao
+                await _gateway.CommitAsync();
+                await _notificacaoGateway.InsertAsync(new Notificacao
                 {
                     Mensagem = "Arquivo recebido com sucesso!",
                     Usuario = entity.Usuario
                 });
-                await _gateway.CommitAsync();
+                await _notificacaoGateway.CommitAsync();
                 return ModelResultFactory.InsertSucessResult<ProcessamentoImagem>(entity);
             }
 
