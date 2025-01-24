@@ -4,6 +4,8 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<RootNamespace>FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+		<AssemblyName>FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.$(MSBuildProjectName.Replace(" ", "_"))</AssemblyName>
 	</PropertyGroup>
 
 	<ItemGroup>

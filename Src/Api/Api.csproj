@@ -8,6 +8,8 @@
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 		<DockerfileContext>..\..\</DockerfileContext>
 		<DockerComposeProjectPath>..\..\Docker\docker-compose.dcproj</DockerComposeProjectPath>
+		<AssemblyName>FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.$(MSBuildProjectName.Replace(" ", "_"))</AssemblyName>
+		<RootNamespace>FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -18,7 +20,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Core\Ioc\FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Ioc.csproj" />
+	  <ProjectReference Include="..\Core\Ioc\Ioc.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -4,6 +4,8 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<RootNamespace>FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+		<AssemblyName>FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.$(MSBuildProjectName.Replace(" ", "_"))</AssemblyName>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -12,7 +14,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Core\Domain\FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.csproj" />
+		<ProjectReference Include="..\..\Core\Domain\Domain.csproj" />
 	</ItemGroup>
 
 </Project>

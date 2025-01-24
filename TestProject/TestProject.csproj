@@ -28,7 +28,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Src\Core\Ioc\FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Ioc.csproj" />
+	  <ProjectReference Include="..\Src\Core\Ioc\Ioc.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

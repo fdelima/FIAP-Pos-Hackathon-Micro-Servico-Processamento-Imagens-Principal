@@ -5,7 +5,6 @@ using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.In
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Models;
 using FluentValidation;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using System.Linq.Expressions;
 
 namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Application.Controllers
@@ -157,6 +156,6 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Appli
             return await _mediator.Send(command);
         }
 
-        
+
     }
 }

@@ -11,17 +11,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{39
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{BB1E9158-AE8F-42EE-B69A-17FB18E5327C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Api", "Src\Api\FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Api.csproj", "{28ACBA4F-879C-4520-8F1D-5300F1292459}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "Src\Api\Api.csproj", "{28ACBA4F-879C-4520-8F1D-5300F1292459}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Infra", "Src\External\Infra\FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Infra.csproj", "{21491D01-0CB3-4AC4-B2FA-9D192619DE0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra", "Src\External\Infra\Infra.csproj", "{21491D01-0CB3-4AC4-B2FA-9D192619DE0E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Application", "Src\Core\Application\FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Application.csproj", "{A95B0A81-B9FB-4708-ACDA-3FC15C26E54E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Src\Core\Application\Application.csproj", "{A95B0A81-B9FB-4708-ACDA-3FC15C26E54E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain", "Src\Core\Domain\FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.csproj", "{84C98999-A5D1-481B-A0C4-4B7BA92D9DDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Src\Core\Domain\Domain.csproj", "{84C98999-A5D1-481B-A0C4-4B7BA92D9DDA}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "Docker\docker-compose.dcproj", "{25014793-CEDD-4041-9A8F-86709AE87B69}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Ioc", "Src\Core\Ioc\FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Ioc.csproj", "{1BEFFDB1-BC06-4DB8-B450-7E4A3720E4F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ioc", "Src\Core\Ioc\Ioc.csproj", "{1BEFFDB1-BC06-4DB8-B450-7E4A3720E4F7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject", "TestProject\TestProject.csproj", "{9D141B2A-0B5B-4BAE-A250-18757A6CF7AA}"
 EndProject

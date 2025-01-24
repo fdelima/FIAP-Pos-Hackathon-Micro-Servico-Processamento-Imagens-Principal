@@ -3,7 +3,7 @@ using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Mo
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.IoC;
 using System.Diagnostics.CodeAnalysis;
 
-[ExcludeFromCodeCoverage(Justification = "Arquivo de configura��o")]
+[ExcludeFromCodeCoverage(Justification = "Arquivo de configuração")]
 public class Program
 {
     private static void Main(string[] args)

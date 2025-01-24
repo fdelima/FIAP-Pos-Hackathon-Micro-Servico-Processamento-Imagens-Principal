@@ -28,7 +28,7 @@ public partial class ProcessamentoImagem : IDomainEntity
 
     public Guid IdProcessamentoImagem { get; set; }
 
-    public DateTime Data { get; set; } 
+    public DateTime Data { get; set; }
 
     public string Usuario { get; set; }
 
