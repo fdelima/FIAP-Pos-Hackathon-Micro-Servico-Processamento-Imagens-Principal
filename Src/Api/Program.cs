@@ -1,4 +1,5 @@
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Api;
+using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Interfaces;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Models;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.IoC;
 using System.Diagnostics.CodeAnalysis;
@@ -14,6 +15,8 @@ public class Program
 
         // Add services to the container.
         builder.Services.AddControllers();
+        builder.Services.AddHostedService<SendQueueWorker>(); // Adicione o seu Worker Service
+
         builder.Services.ConfigureModelValidations();
         builder.Services.AddSwagger("Web Api C# Sample");
 
