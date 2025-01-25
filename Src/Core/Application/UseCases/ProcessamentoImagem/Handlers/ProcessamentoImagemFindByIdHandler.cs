@@ -7,9 +7,9 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Appli
 {
     public class ProcessamentoImagemFindByIdHandler : IRequestHandler<ProcessamentoImagemFindByIdCommand, ModelResult>
     {
-        private readonly IService<Domain.Entities.ProcessamentoImagem> _service;
+        private readonly IProcessamentoImagemService _service;
 
-        public ProcessamentoImagemFindByIdHandler(IService<Domain.Entities.ProcessamentoImagem> service)
+        public ProcessamentoImagemFindByIdHandler(IProcessamentoImagemService service)
         {
             _service = service;
         }

@@ -1,5 +1,4 @@
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Api;
-using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Interfaces;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Models;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.IoC;
 using System.Diagnostics.CodeAnalysis;

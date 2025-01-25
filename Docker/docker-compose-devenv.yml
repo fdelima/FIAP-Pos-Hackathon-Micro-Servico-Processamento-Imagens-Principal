@@ -16,3 +16,14 @@ services:
       - "27017:27017"
     volumes:
       - sql_data:/data/db
+  azurite:
+    image: mcr.microsoft.com/azure-storage/azurite
+    ports:
+      - "10000:10000"
+      - "10001:10001"
+  servicebus:
+    image: mcr.microsoft.com/azure-messaging/servicebus-emulator
+    ports:
+      - "5671:5671"
+      - "5672:5672"
+      - "9093:9093"

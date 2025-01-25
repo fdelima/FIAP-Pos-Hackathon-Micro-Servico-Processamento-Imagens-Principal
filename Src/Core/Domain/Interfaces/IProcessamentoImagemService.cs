@@ -4,20 +4,14 @@ using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Mo
 namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Interfaces
 {
     /// <summary>
-    /// Interface regulamentando os métodos que precisam ser impementados pelos serviços da aplicação
+    /// Interface regulamentando os métodos que precisam ser impementados pelos serviços
     /// </summary>
-    public interface IProcessamentoImagemController : IController<ProcessamentoImagem>
+    public interface IProcessamentoImagemService : IService<ProcessamentoImagem>
     {
-        /// <summary>
-        /// Insere o objeto
-        /// </summary>
-        /// <param name="entity">Objeto relacional do bd mapeado</param>
-        Task<ModelResult> PostAsync(ProcessamentoImagemModel entity);
-        
         /// <summary>
         /// Lê as mensagens dos arquivos processados.
         /// </summary>
-        Task<ModelResult> ReceiverMessageInQueueAsync(string mESSAGER_QUEUE_PROCESSED_NAME);
+        Task<ModelResult> ReceiverMessageInQueueAsync(string queueName);
 
         /// <summary>
         /// Envia as mensagens dos arquivos recebidos para a fila.

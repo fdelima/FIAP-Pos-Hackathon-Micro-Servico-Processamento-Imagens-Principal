@@ -5,18 +5,18 @@ using MediatR;
 
 namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Application.UseCases.ProcessamentoImagem.Handlers
 {
-    public class ProcessamentoImagemPutHandler : IRequestHandler<ProcessamentoImagemPutCommand, ModelResult>
+    public class ProcessamentoImagemReceiverMessageInQueueHandler : IRequestHandler<ProcessamentoImagemReceiverMessageInQueueCommand, ModelResult>
     {
         private readonly IProcessamentoImagemService _service;
 
-        public ProcessamentoImagemPutHandler(IProcessamentoImagemService service)
+        public ProcessamentoImagemReceiverMessageInQueueHandler(IProcessamentoImagemService service)
         {
             _service = service;
         }
 
-        public async Task<ModelResult> Handle(ProcessamentoImagemPutCommand command, CancellationToken cancellationToken = default)
+        public async Task<ModelResult> Handle(ProcessamentoImagemReceiverMessageInQueueCommand command, CancellationToken cancellationToken = default)
         {
-            return await _service.UpdateAsync(command.Entity, command.BusinessRules);
+            return await _service.ReceiverMessageInQueueAsync(command.QueueName);
         }
     }
 }

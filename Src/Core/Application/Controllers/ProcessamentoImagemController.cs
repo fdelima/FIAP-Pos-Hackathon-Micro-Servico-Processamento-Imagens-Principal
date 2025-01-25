@@ -2,6 +2,7 @@
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Entities;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Interfaces;
+using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Messages;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Models;
 using FluentValidation;
 using MediatR;
@@ -16,11 +17,15 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Appli
     {
         private readonly IMediator _mediator;
         private readonly IValidator<Domain.Entities.ProcessamentoImagem> _validator;
+        private readonly IStorageService _storageService;
 
-        public ProcessamentoImagemController(IMediator mediator, IValidator<Domain.Entities.ProcessamentoImagem> validator)
+        public ProcessamentoImagemController(IMediator mediator,
+            IValidator<Domain.Entities.ProcessamentoImagem> validator,
+            IStorageService IStorageService)
         {
             _mediator = mediator;
             _validator = validator;
+            _storageService = IStorageService;
         }
 
         /// <summary>
@@ -74,16 +79,31 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Appli
             {
                 if (entity.FormFile.Length > 0)
                 {
-                    var filePath = Path.GetTempFileName();
+                    var ms = new MemoryStream();
+                    await entity.FormFile.CopyToAsync(ms);
 
-                    using (var stream = File.Create(filePath))
+                    var uploadFileTask = _storageService.UploadFileAsync(Constants.BLOB_CONTAINER_NAME, entity.FormFile.FileName, ms);
+                    await uploadFileTask;
+
+                    if (!uploadFileTask.IsCompletedSuccessfully)
+                        ValidatorResult.AddError(uploadFileTask.Exception?.Message ?? "upload file");
+
+                    ProcessamentoImagemPostCommand command = new(entity);
+                    var result = await _mediator.Send(command);
+
+                    if (!result.IsValid)
                     {
-                        await entity.FormFile.CopyToAsync(stream);
-                    }
-                }
+                        var deleteFileTask = _storageService.DeleteFileAsync(Constants.BLOB_CONTAINER_NAME, entity.FormFile.FileName);
 
-                ProcessamentoImagemPostCommand command = new(entity);
-                return await _mediator.Send(command);
+                        if (!deleteFileTask.IsCompletedSuccessfully)
+                            ValidatorResult.AddError(uploadFileTask.Exception?.Message ?? "delete file");
+                    }
+
+                    return result;
+                }
+                else
+                    ValidatorResult.AddMessage(ValidationMessages.RequiredFieldWhithPropertyName("FormFile"));
+
             }
 
             return ValidatorResult;
@@ -156,6 +176,22 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Appli
             return await _mediator.Send(command);
         }
 
+        /// <summary>
+        /// Envia as mensagens dos arquivos recebidos para a fila.
+        /// </summary>
+        public async Task<ModelResult> SendMessageToQueueAsync(string queueName)
+        {
+            ProcessamentoImagemSendMessageToQueueCommand command = new(queueName);
+            return await _mediator.Send(command);
+        }
 
+        /// <summary>
+        /// Lê as mensagens dos arquivos processados.
+        /// </summary>
+        public async Task<ModelResult> ReceiverMessageInQueueAsync(string queueName)
+        {
+            ProcessamentoImagemReceiverMessageInQueueCommand command = new(queueName);
+            return await _mediator.Send(command);
+        }
     }
 }

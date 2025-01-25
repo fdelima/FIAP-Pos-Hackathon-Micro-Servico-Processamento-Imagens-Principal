@@ -1,14 +1,16 @@
 ﻿using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Entities;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Interfaces;
+using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Messages;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Models;
 using FluentValidation;
 using System.Linq.Expressions;
 
 namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Services
 {
-    public class ProcessamentoImagemService : BaseService<ProcessamentoImagem>
+    public class ProcessamentoImagemService : BaseService<ProcessamentoImagem>, IProcessamentoImagemService
     {
         protected readonly IGateways<Notificacao> _notificacaoGateway;
+        protected readonly IMessagerService _messagerService;
 
         /// <summary>
         /// Lógica de negócio referentes ao pedido.
@@ -19,10 +21,12 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
         /// <param name="MercadoPagoWebhoockGateway">Gateway de MercadoPagoWebhoock a ser injetado durante a execução</param>
         public ProcessamentoImagemService(IGateways<ProcessamentoImagem> gateway,
             IValidator<ProcessamentoImagem> validator,
-            IGateways<Notificacao> notificacaoGateway)
+            IGateways<Notificacao> notificacaoGateway,
+            IMessagerService messagerService)
             : base(gateway, validator)
         {
             _notificacaoGateway = notificacaoGateway;
+            _messagerService = messagerService;
         }
 
         /// <summary>
@@ -67,6 +71,61 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
             }
 
             return ValidatorResult;
+        }
+
+        /// <summary>
+        /// Lê as mensagens dos arquivos processados.
+        /// </summary>
+        public async Task<ModelResult> ReceiverMessageInQueueAsync(string queueName)
+        {
+            var result = new ModelResult();
+
+            var messagesBody = await _messagerService.ReceiveMessagesAsync(queueName);
+
+            foreach (var body in messagesBody)
+            {
+                var item = await _gateway.FindByIdAsync(Guid.Parse(body));
+
+                if (item == null)
+                    result.AddError(BusinessMessages.NotFoundInError<ProcessamentoImagem>(Guid.Parse(body)));
+                else
+                {
+                    try
+                    {
+                        await _gateway.UpdateAsync(item);
+                        result.AddMessage(ModelResultFactory.UpdateSucessResult<ProcessamentoImagem>(item).Messages);
+                    }
+                    catch (Exception ex)
+                    {
+                        result.AddError($"{body} {ex.Message}");
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Envia as mensagens dos arquivos recebidos para a fila.
+        /// </summary>
+        public async Task<ModelResult> SendMessageToQueueAsync(string queueName)
+        {
+            var result = new ModelResult();
+
+            var ItemsToSendPage = await _gateway.GetItemsAsync(x => x.DataEnviadoFila == null);
+
+            foreach (var item in ItemsToSendPage.Content)
+            {
+                var sendMessageTask = _messagerService.SendMessageAsync(queueName, item.IdProcessamentoImagem.ToString());
+                await sendMessageTask;
+
+                if (sendMessageTask.IsCompletedSuccessfully)
+                    result.AddMessage($"{item.IdProcessamentoImagem.ToString()} :: Send Message To Queue Success!");
+                else
+                    result.AddError($"{item.IdProcessamentoImagem.ToString()} :: Send Message To Queue Failed! {sendMessageTask.Exception?.Message ?? ""}");
+            }
+
+            return result;
         }
     }
 }

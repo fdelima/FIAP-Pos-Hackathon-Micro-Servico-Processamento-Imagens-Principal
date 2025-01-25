@@ -12,6 +12,7 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Infra
         {
             //Repositories
             services.AddScoped(typeof(IGateways<>), typeof(BaseGateway<>));
+            services.AddScoped<IStorageGateway, AzureBlobStorageGateway>();
         }
     }
 }
