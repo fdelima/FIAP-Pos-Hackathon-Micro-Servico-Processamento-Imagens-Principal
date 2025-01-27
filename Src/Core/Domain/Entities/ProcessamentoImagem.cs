@@ -1,4 +1,5 @@
 ﻿using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Interfaces;
+using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Models;
 using System.Linq.Expressions;
 
 namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Entities;
@@ -30,15 +31,14 @@ public partial class ProcessamentoImagem : IDomainEntity
 
     public DateTime Data { get; set; }
 
-    public string Usuario { get; set; }
+    public required string Usuario { get; set; }
 
     public DateTime DataEnvio { get; set; }
     public DateTime? DataEnviadoFila { get; set; }
     public DateTime? DataInicioProcessamento { get; set; }
     public DateTime? DataFimProcessamento { get; set; }
 
-    public string NomeArquivo { get; set; }
-    public int? TamanhoArquivo { get; set; }
-    public string? NomeArquivoZipDownload { get; set; }
-
+    public required string NomeArquivo { get; set; }
+    public long TamanhoArquivo { get; set; }
+    public required string NomeArquivoZipDownload { get; set; }
 }

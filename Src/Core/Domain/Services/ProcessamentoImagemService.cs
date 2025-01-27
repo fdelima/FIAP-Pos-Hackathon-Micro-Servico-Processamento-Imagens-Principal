@@ -4,6 +4,7 @@ using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Me
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Models;
 using FluentValidation;
 using System.Linq.Expressions;
+using System.Text.Json;
 
 namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Services
 {
@@ -84,14 +85,29 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
 
             foreach (var body in messagesBody)
             {
-                var item = await _gateway.FindByIdAsync(Guid.Parse(body));
+                var msg = JsonSerializer.Deserialize<ProcessamentoImagemProcessModel>(body);
 
-                if (item == null)
-                    result.AddError(BusinessMessages.NotFoundInError<ProcessamentoImagem>(Guid.Parse(body)));
+                if (msg == null)
+                {
+                    result.AddError(BusinessMessages.NotFoundError<ProcessamentoImagem>());
+                }
                 else
                 {
                     try
                     {
+
+                        var item = await _gateway.FindByIdAsync(msg.IdProcessamentoImagem);
+                        if (item == null)
+                        {
+                            result.AddError(BusinessMessages.NotFoundInError<ProcessamentoImagem>(msg.IdProcessamentoImagem));
+                            return result;
+                        }
+
+                        item.DataInicioProcessamento = msg.DataInicioProcessamento;
+
+                        if (msg.DataFimProcessamento != null)
+                            item.DataFimProcessamento = msg.DataFimProcessamento;
+
                         await _gateway.UpdateAsync(item);
                         result.AddMessage(ModelResultFactory.UpdateSucessResult<ProcessamentoImagem>(item).Messages);
                     }
@@ -116,7 +132,17 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
 
             foreach (var item in ItemsToSendPage.Content)
             {
-                var sendMessageTask = _messagerService.SendMessageAsync(queueName, item.IdProcessamentoImagem.ToString());
+                var msg = new ProcessamentoImagemSendQueueModel
+                {
+                    IdProcessamentoImagem = item.IdProcessamentoImagem,
+                    Usuario = item.Usuario,
+                    DataEnviadoFila = DateTime.Now,
+                    NomeArquivo = item.NomeArquivo,
+                    TamanhoArquivo = item.TamanhoArquivo,
+                    NomeArquivoZipDownload = item.NomeArquivoZipDownload
+                };
+
+                var sendMessageTask = _messagerService.SendMessageAsync(queueName, JsonSerializer.Serialize(msg));
                 await sendMessageTask;
 
                 if (sendMessageTask.IsCompletedSuccessfully)

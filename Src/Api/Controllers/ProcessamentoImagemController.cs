@@ -75,7 +75,7 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Api.C
         [HttpPost]
         [ProducesResponseType(typeof(ModelResult), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Post(ProcessamentoImagemModel model)
+        public async Task<IActionResult> Post(ProcessamentoImagemUploadModel model)
         {
             return ExecuteCommand(await _controller.PostAsync(model));
         }
