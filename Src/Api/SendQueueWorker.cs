@@ -1,7 +1,5 @@
 ﻿using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Interfaces;
-using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Models;
-using MongoDB.Bson.IO;
 using System.Text.Json;
 
 namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Api
@@ -15,33 +13,60 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Api
     /// </summary>
     public class SendQueueWorker : BackgroundService
     {
-        IProcessamentoImagemController _processamentoImagemController;
-
-        public SendQueueWorker(IProcessamentoImagemController processamentoImagemController)
+        IServiceProvider _serviceProvider;
+        public SendQueueWorker(IServiceProvider sp)
         {
-            _processamentoImagemController = processamentoImagemController;
+            _serviceProvider = sp;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            ModelResult result;
 
             while (!stoppingToken.IsCancellationRequested)
             {
-                Console.WriteLine("Worker Send Service executando...");
-                result = await _processamentoImagemController.SendMessageToQueueAsync(Constants.MESSAGER_QUEUE_TO_PROCESS_NAME);
-                Console.Write(JsonSerializer.Serialize(result));
-
-                Console.WriteLine("Worker Send Service aguardando...");
-                await Task.Delay(TimeSpan.FromSeconds(60), stoppingToken);
-
-                Console.WriteLine("Worker Receiver Service executando...");
-                await _processamentoImagemController.ReceiverMessageInQueueAsync(Constants.MESSAGER_QUEUE_PROCESSED_NAME);
-                Console.Write(JsonSerializer.Serialize(result));
-
-                Console.WriteLine("Worker Receiver Service aguardando...");
-                await Task.Delay(TimeSpan.FromSeconds(60), stoppingToken);
+                using (var scope = _serviceProvider.CreateScope())
+                {
+                    var _processamentoImagemController = scope.ServiceProvider.GetRequiredService<IProcessamentoImagemController>();
+                    await Sender(_processamentoImagemController, stoppingToken);
+                    await Receiver(_processamentoImagemController, stoppingToken);
+                }
             }
+        }
+
+        private static async Task Sender(IProcessamentoImagemController _processamentoImagemController, CancellationToken stoppingToken)
+        {
+
+            try
+            {
+                Console.WriteLine("Worker Send Service executando...");
+                var result = await _processamentoImagemController.SendMessageToQueueAsync(Constants.MESSAGER_QUEUE_TO_PROCESS_NAME);
+                Console.WriteLine(JsonSerializer.Serialize(result));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ops! Worker Send Service aguardando: " + ex.Message);
+            }
+
+            Console.WriteLine("Worker Send Service aguardando...");
+            await Task.Delay(TimeSpan.FromSeconds(60), stoppingToken);
+        }
+
+        private static async Task Receiver(IProcessamentoImagemController _processamentoImagemController, CancellationToken stoppingToken)
+        {
+            try
+            {
+                Console.WriteLine("Worker Receiver Service executando...");
+                var result = await _processamentoImagemController.ReceiverMessageInQueueAsync(Constants.MESSAGER_QUEUE_PROCESSED_NAME);
+                Console.WriteLine(JsonSerializer.Serialize(result));
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ops! Worker Receiver Service: " + ex.Message);
+            }
+
+            Console.WriteLine("Worker Receiver Service aguardando...");
+            await Task.Delay(TimeSpan.FromSeconds(60), stoppingToken);
         }
     }
 

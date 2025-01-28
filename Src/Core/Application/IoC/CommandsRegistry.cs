@@ -23,7 +23,8 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Appli
             services.AddScoped<IRequestHandler<ProcessamentoImagemDeleteCommand, ModelResult>, ProcessamentoImagemDeleteHandler>();
             services.AddScoped<IRequestHandler<ProcessamentoImagemFindByIdCommand, ModelResult>, ProcessamentoImagemFindByIdHandler>();
             services.AddScoped<IRequestHandler<ProcessamentoImagemGetItemsCommand, PagingQueryResult<ProcessamentoImagem>>, ProcessamentoImagemGetItemsHandler>();
-
+            services.AddScoped<IRequestHandler<ProcessamentoImagemReceiverMessageInQueueCommand, ModelResult>, ProcessamentoImagemReceiverMessageInQueueHandler>();
+            services.AddScoped<IRequestHandler<ProcessamentoImagemSendMessageToQueueCommand, ModelResult>, ProcessamentoImagemSendMessageToQueueHandler>();
         }
     }
 }

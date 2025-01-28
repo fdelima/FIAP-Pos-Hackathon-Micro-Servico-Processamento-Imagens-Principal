@@ -13,7 +13,7 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
         /// </summary>
         /// <param name="entity">Objeto relacional do bd mapeado</param>
         Task<ModelResult> PostAsync(ProcessamentoImagemUploadModel entity);
-        
+
         /// <summary>
         /// Lê as mensagens dos arquivos processados.
         /// </summary>

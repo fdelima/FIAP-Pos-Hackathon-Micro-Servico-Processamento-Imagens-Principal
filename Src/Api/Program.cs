@@ -14,7 +14,10 @@ public class Program
 
         // Add services to the container.
         builder.Services.AddControllers();
-        builder.Services.AddHostedService<SendQueueWorker>(); // Adicione o seu Worker Service
+        builder.Services.AddHostedService(sp =>
+        {
+            return new SendQueueWorker(sp);
+        }); // Adicione o seu Worker Service
 
         builder.Services.ConfigureModelValidations();
         builder.Services.AddSwagger("Web Api C# Sample");
