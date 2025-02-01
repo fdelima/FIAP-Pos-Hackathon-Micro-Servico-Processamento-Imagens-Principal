@@ -1,12 +1,16 @@
 version: '3.4'
+
 volumes:
   sql_data: {}
+  azurite_data: {}
 
 services:
   FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.api:
     image: ${DOCKER_REGISTRY-}fiapposhackathonmicroservicoprocessamentoimagensprincipalapi
     depends_on:
       - mongodb
+      - azurite
+      - servicebus 
     build:
       context: ../
       dockerfile: Src/Api/Dockerfile
@@ -18,10 +22,12 @@ services:
       - sql_data:/data/db
   azurite:
     image: mcr.microsoft.com/azure-storage/azurite
-    command: azurite-blob --blobHost 0.0.0.0 --blobPort 10000
     ports:
-      - "10000:10000"
-      - "10001:10001"
+      - "10000:10000" # Porta para o Blob Storage
+      - "10001:10001" # Porta para o Queue Storage
+      - "10002:10002" # Porta para o Table Storage
+    volumes:
+      - azurite_data:/data
   servicebus:
     image: mcr.microsoft.com/azure-messaging/servicebus-emulator
     ports:

@@ -21,6 +21,7 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Infra
             await containerClient.CreateIfNotExistsAsync();
 
             var blobClient = containerClient.GetBlobClient(fileName);
+            fileStream.Position = 0;
             await blobClient.UploadAsync(fileStream, true);
         }
 
