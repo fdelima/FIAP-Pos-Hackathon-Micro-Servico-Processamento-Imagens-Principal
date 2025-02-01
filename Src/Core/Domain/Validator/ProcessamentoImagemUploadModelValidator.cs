@@ -17,6 +17,8 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
             RuleFor(c => c.Data).NotEmpty().WithMessage(ValidationMessages.RequiredField);
             RuleFor(c => c.Usuario).NotEmpty().WithMessage(ValidationMessages.RequiredField);
             RuleFor(c => c.FormFile).NotEmpty().WithMessage(ValidationMessages.RequiredField);
+            RuleFor(c => c.FormFile).NotNull().WithMessage(ValidationMessages.RequiredField);
+            RuleFor(c => c.FormFile).Must(x=> x.FileName.EndsWith(".mp4")).WithMessage($"{ValidationMessages.unknownFileFormat} {ValidationMessages.inputFile} .mp4 de até 500Mb");
         }
     }
 }

@@ -23,5 +23,10 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
 
             return _client;
         }
+
+        /// <summary>
+        /// Limite máximo de upload
+        /// </summary>
+        public const int MaxUploadBytesRequest = 500 * 1024 * 1024;
     }
 }

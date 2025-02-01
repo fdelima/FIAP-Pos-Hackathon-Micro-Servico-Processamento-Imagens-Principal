@@ -66,13 +66,14 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Api.C
         }
 
         /// <summary>
-        /// Inseri o ProcessamentoImagem cadastrado.
+        /// Inseri o video .mp4 de até 500Mb para Processamento de Imagem cadastrado.
         /// </summary>
         /// <param name="model">Objeto contendo as informações para inclusão.</param>
         /// <returns>Retorna o result do ProcessamentoImagem cadastrado.</returns>
         /// <response code="200">ProcessamentoImagem inserida com sucesso.</response>
         /// <response code="400">Erros de validação dos parâmetros para inserção do ProcessamentoImagem.</response>
         [HttpPost]
+        [RequestSizeLimit(Util.MaxUploadBytesRequest)]
         [ProducesResponseType(typeof(ModelResult), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<IActionResult> Post(ProcessamentoImagemUploadModel model)
