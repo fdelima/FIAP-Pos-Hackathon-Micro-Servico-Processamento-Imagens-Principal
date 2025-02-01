@@ -100,16 +100,18 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Appli
             {
                 if (entity.FormFile.Length > 0)
                 {
+                    var idProcessamentoImagem = Guid.NewGuid();
+                    var fileToUpload = $"{idProcessamentoImagem}/{entity.FormFile.FileName}";
+
                     var ms = new MemoryStream();
                     await entity.FormFile.CopyToAsync(ms);
 
-                    var uploadFileTask = _storageService.UploadFileAsync(Constants.BLOB_CONTAINER_NAME, entity.FormFile.FileName, ms);
+                    var uploadFileTask = _storageService.UploadFileAsync(Constants.BLOB_CONTAINER_NAME, fileToUpload, ms);
                     await uploadFileTask;
 
                     if (!uploadFileTask.IsCompletedSuccessfully)
                         ValidatorResult.AddError(uploadFileTask.Exception?.Message ?? "upload file");
 
-                    var idProcessamentoImagem = Guid.NewGuid();
 
                     var piEntity = new ProcessamentoImagem
                     {
@@ -127,7 +129,7 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Appli
 
                     if (!result.IsValid)
                     {
-                        var deleteFileTask = _storageService.DeleteFileAsync(Constants.BLOB_CONTAINER_NAME, entity.FormFile.FileName);
+                        var deleteFileTask = _storageService.DeleteFileAsync(Constants.BLOB_CONTAINER_NAME, fileToUpload);
 
                         if (!deleteFileTask.IsCompletedSuccessfully)
                             ValidatorResult.AddError(uploadFileTask.Exception?.Message ?? "delete file");
