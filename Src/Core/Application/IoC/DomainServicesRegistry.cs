@@ -15,7 +15,7 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Appli
             services.AddScoped(typeof(IService<>), typeof(BaseService<>));
             services.AddScoped(typeof(IService<Notificacao>), typeof(NotificacaoService));
             services.AddScoped(typeof(IProcessamentoImagemService), typeof(ProcessamentoImagemService));
-            services.AddScoped(typeof(IMessagerService), typeof(AzureServiceBusService));
+            services.AddScoped(typeof(IMessagerService), typeof(MessageService));
             services.AddScoped(typeof(IStorageService), typeof(AzureBlobStorageService));
         }
     }

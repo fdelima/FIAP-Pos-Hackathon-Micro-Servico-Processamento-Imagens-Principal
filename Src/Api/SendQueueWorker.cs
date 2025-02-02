@@ -1,5 +1,4 @@
-﻿using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain;
-using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Interfaces;
+﻿using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Interfaces;
 using System.Text.Json;
 
 namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Api
@@ -39,12 +38,12 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Api
             try
             {
                 Console.WriteLine("Worker Send Service executando...");
-                var result = await _processamentoImagemController.SendMessageToQueueAsync(Constants.MESSAGER_QUEUE_TO_PROCESS_NAME);
+                var result = await _processamentoImagemController.SendMessageToQueueAsync();
                 Console.WriteLine(JsonSerializer.Serialize(result));
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Ops! Worker Send Service aguardando: " + ex.Message);
+                Console.WriteLine("Ops! Worker Send Service: " + ex.Message);
             }
 
             Console.WriteLine("Worker Send Service aguardando...");
@@ -53,10 +52,13 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Api
 
         private static async Task Receiver(IProcessamentoImagemController _processamentoImagemController, CancellationToken stoppingToken)
         {
+            Console.WriteLine("Worker Receiver Service aguardando...");
+            await Task.Delay(TimeSpan.FromSeconds(60), stoppingToken);
+
             try
             {
                 Console.WriteLine("Worker Receiver Service executando...");
-                var result = await _processamentoImagemController.ReceiverMessageInQueueAsync(Constants.MESSAGER_QUEUE_PROCESSED_NAME);
+                var result = await _processamentoImagemController.ReceiverMessageInQueueAsync();
                 Console.WriteLine(JsonSerializer.Serialize(result));
 
             }
@@ -65,8 +67,6 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Api
                 Console.WriteLine("Ops! Worker Receiver Service: " + ex.Message);
             }
 
-            Console.WriteLine("Worker Receiver Service aguardando...");
-            await Task.Delay(TimeSpan.FromSeconds(60), stoppingToken);
         }
     }
 

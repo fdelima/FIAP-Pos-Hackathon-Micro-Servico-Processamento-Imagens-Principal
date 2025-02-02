@@ -5,11 +5,5 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Appli
 {
     public class ProcessamentoImagemReceiverMessageInQueueCommand : IRequest<ModelResult>
     {
-        public ProcessamentoImagemReceiverMessageInQueueCommand(string queueName)
-        {
-            QueueName = queueName;
-        }
-
-        public string QueueName { get; private set; }
     }
 }

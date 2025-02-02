@@ -3,7 +3,6 @@ using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Models;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.IoC;
 using Microsoft.AspNetCore.Http.Features;
-using Microsoft.Extensions.Options;
 using System.Diagnostics.CodeAnalysis;
 
 [ExcludeFromCodeCoverage(Justification = "Arquivo de configuração")]
@@ -32,8 +31,8 @@ public class Program
         builder.Services.Configure<FormOptions>(opt =>
         {
             opt.BufferBody = true;
-            opt.MultipartBodyLengthLimit = Util.MaxUploadBytesRequest;            
-            opt.BufferBodyLengthLimit = Util.MaxUploadBytesRequest;            
+            opt.MultipartBodyLengthLimit = Util.MaxUploadBytesRequest;
+            opt.BufferBodyLengthLimit = Util.MaxUploadBytesRequest;
         });
 
         WebApplication app = builder.Build();

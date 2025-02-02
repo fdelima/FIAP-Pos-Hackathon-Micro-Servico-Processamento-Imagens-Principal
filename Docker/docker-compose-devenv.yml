@@ -10,7 +10,7 @@ services:
     depends_on:
       - mongodb
       - azurite
-      - servicebus 
+      # - servicebus 
     build:
       context: ../
       dockerfile: Src/Api/Dockerfile
@@ -28,9 +28,9 @@ services:
       - "10002:10002" # Porta para o Table Storage
     volumes:
       - azurite_data:/data
-  servicebus:
-    image: mcr.microsoft.com/azure-messaging/servicebus-emulator
-    ports:
-      - "5671:5671"
-      - "5672:5672"
-      - "9093:9093"
+  # servicebus:
+  #   image: mcr.microsoft.com/azure-messaging/servicebus-emulator
+  #   ports:
+  #     - "5671:5671"
+  #     - "5672:5672"
+  #     - "9093:9093"

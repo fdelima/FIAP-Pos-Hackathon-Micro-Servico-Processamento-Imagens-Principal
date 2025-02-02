@@ -215,18 +215,18 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Appli
         /// <summary>
         /// Envia as mensagens dos arquivos recebidos para a fila.
         /// </summary>
-        public async Task<ModelResult> SendMessageToQueueAsync(string queueName)
+        public async Task<ModelResult> SendMessageToQueueAsync()
         {
-            ProcessamentoImagemSendMessageToQueueCommand command = new(queueName);
+            ProcessamentoImagemSendMessageToQueueCommand command = new();
             return await _mediator.Send(command);
         }
 
         /// <summary>
         /// Lê as mensagens dos arquivos processados.
         /// </summary>
-        public async Task<ModelResult> ReceiverMessageInQueueAsync(string queueName)
+        public async Task<ModelResult> ReceiverMessageInQueueAsync()
         {
-            ProcessamentoImagemReceiverMessageInQueueCommand command = new(queueName);
+            ProcessamentoImagemReceiverMessageInQueueCommand command = new();
             return await _mediator.Send(command);
         }
     }

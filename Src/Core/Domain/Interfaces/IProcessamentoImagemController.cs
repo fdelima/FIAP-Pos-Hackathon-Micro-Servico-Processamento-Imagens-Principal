@@ -17,11 +17,11 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
         /// <summary>
         /// Lê as mensagens dos arquivos processados.
         /// </summary>
-        Task<ModelResult> ReceiverMessageInQueueAsync(string mESSAGER_QUEUE_PROCESSED_NAME);
+        Task<ModelResult> ReceiverMessageInQueueAsync();
 
         /// <summary>
         /// Envia as mensagens dos arquivos recebidos para a fila.
         /// </summary>
-        Task<ModelResult> SendMessageToQueueAsync(string queueName);
+        Task<ModelResult> SendMessageToQueueAsync();
     }
 }

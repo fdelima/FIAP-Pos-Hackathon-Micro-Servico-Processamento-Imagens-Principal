@@ -16,7 +16,7 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Appli
 
         public async Task<ModelResult> Handle(ProcessamentoImagemSendMessageToQueueCommand command, CancellationToken cancellationToken = default)
         {
-            return await _service.SendMessageToQueueAsync(command.QueueName);
+            return await _service.SendMessageToQueueAsync();
         }
     }
 }

@@ -3,7 +3,7 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
 {
     public interface IMessagerService
     {
-        Task<string[]> ReceiveMessagesAsync(string queueName);
-        Task SendMessageAsync(string queueName, string messageBody);
+        Task<string> ReceiveMessagesAsync();
+        Task SendMessageAsync(string messageBody);
     }
 }

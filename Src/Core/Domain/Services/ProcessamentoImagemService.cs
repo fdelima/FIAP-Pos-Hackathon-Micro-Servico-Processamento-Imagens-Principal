@@ -77,11 +77,11 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
         /// <summary>
         /// Lê as mensagens dos arquivos processados.
         /// </summary>
-        public async Task<ModelResult> ReceiverMessageInQueueAsync(string queueName)
+        public async Task<ModelResult> ReceiverMessageInQueueAsync()
         {
             var result = new ModelResult();
 
-            var messagesBody = await _messagerService.ReceiveMessagesAsync(queueName);
+            var messagesBody = await _messagerService.ReceiveMessagesAsync();
 
             foreach (var body in messagesBody)
             {
@@ -124,7 +124,7 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
         /// <summary>
         /// Envia as mensagens dos arquivos recebidos para a fila.
         /// </summary>
-        public async Task<ModelResult> SendMessageToQueueAsync(string queueName)
+        public async Task<ModelResult> SendMessageToQueueAsync()
         {
             var result = new ModelResult();
 
@@ -142,11 +142,16 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
                     NomeArquivoZipDownload = item.NomeArquivoZipDownload
                 };
 
-                var sendMessageTask = _messagerService.SendMessageAsync(queueName, JsonSerializer.Serialize(msg));
+                var sendMessageTask = _messagerService.SendMessageAsync(JsonSerializer.Serialize(msg));
                 await sendMessageTask;
 
                 if (sendMessageTask.IsCompletedSuccessfully)
+                {
+                    var entity = await _gateway.FindByIdAsync(item.IdProcessamentoImagem);
+                    entity.DataEnviadoFila = msg.DataEnviadoFila;
+                    await _gateway.UpdateAsync(entity);
                     result.AddMessage($"{item.IdProcessamentoImagem.ToString()} :: Send Message To Queue Success!");
+                }
                 else
                     result.AddError($"{item.IdProcessamentoImagem.ToString()} :: Send Message To Queue Failed! {sendMessageTask.Exception?.Message ?? ""}");
             }

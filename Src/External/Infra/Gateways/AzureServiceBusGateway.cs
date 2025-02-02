@@ -8,47 +8,26 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Infra
     public class AzureServiceBusGateway : IMessagerGateway
     {
         private readonly string _connectionString;
+        private readonly ServiceBusReceiver _queueReceiverClient;
+        private readonly ServiceBusSender _queueSenderClient;
 
         public AzureServiceBusGateway(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString(Constants.AZ_SERVICEBUS_CONN_NAME) ?? "";
+            var client = new ServiceBusClient(_connectionString);
+            _queueSenderClient = client.CreateSender(configuration[Domain.Constants.MESSAGER_QUEUE_TO_PROCESS_NAME]);
+            _queueReceiverClient = client.CreateReceiver(configuration[Domain.Constants.MESSAGER_QUEUE_PROCESSED_NAME]);
         }
 
-        public async Task SendMessageAsync(string queueName, string messageBody)
+        public async Task<string> ReceiveMessagesAsync()
         {
-            var client = new ServiceBusClient(_connectionString);
-            var sender = client.CreateSender(queueName);
-
-            await using (sender)
-            {
-                await sender.SendMessageAsync(new ServiceBusMessage(messageBody));
-            }
+            var message = await _queueReceiverClient.ReceiveMessageAsync();
+            return message.Body.ToString();
         }
 
-        public async Task<string[]> ReceiveMessagesAsync(string queueName)
+        public async Task SendMessageAsync(string messageBody)
         {
-            var result = new List<string>();
-
-            var client = new ServiceBusClient(_connectionString);
-            var receiver = client.CreateReceiver(queueName);
-
-            await using (receiver)
-            {
-                while (true)
-                {
-                    var message = await receiver.ReceiveMessageAsync();
-                    if (message != null)
-                    {
-                        result.Add(message.Body.ToString());
-                        Console.WriteLine($"Received: {message.Body}");
-                        await receiver.CompleteMessageAsync(message);
-                    }
-                    else
-                        break;
-                }
-            }
-
-            return result.ToArray();
+            await _queueSenderClient.SendMessageAsync(new ServiceBusMessage(messageBody));
         }
     }
 }
