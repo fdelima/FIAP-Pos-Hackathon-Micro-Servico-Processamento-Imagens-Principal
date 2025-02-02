@@ -101,7 +101,7 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Appli
                 if (entity.FormFile.Length > 0)
                 {
                     var idProcessamentoImagem = Guid.NewGuid();
-                    var fileToUpload = $"{idProcessamentoImagem}/{entity.FormFile.FileName}";
+                    var fileToUpload = $"{idProcessamentoImagem}{Path.GetExtension(entity.FormFile.FileName)}";
 
                     var ms = new MemoryStream();
                     await entity.FormFile.CopyToAsync(ms);
