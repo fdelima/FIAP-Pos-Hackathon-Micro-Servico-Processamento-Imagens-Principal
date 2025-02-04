@@ -16,11 +16,14 @@ internal class NotificacaoMap : IEntityTypeConfiguration<Notificacao>
         builder.Property(e => e.IdNotificacao)
             .ValueGeneratedNever()
             .HasElementName("_id");
+
         builder.Property(e => e.Data)
             .HasElementName("data");
-        builder.Property(e => e.Usuario).HasElementName("id_dispositivo");
+
+        builder.Property(e => e.Usuario)
+            .HasElementName("usuario");
+
         builder.Property(e => e.Mensagem)
-            .HasMaxLength(50)
             .HasElementName("mensagem");
     }
 }

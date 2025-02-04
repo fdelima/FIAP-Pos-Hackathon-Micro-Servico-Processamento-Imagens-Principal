@@ -5,7 +5,7 @@ namespace TestProject.Infra
     public class ApiTestFixture : IDisposable
     {
         const string port = "5000";
-        const string network = "network-pagamento-test";
+        const string network = "network-processamento-imagens-principal-test";
 
         //api
         private const string ImageName = "fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal-gurpo-71-api:fase5";
@@ -31,8 +31,6 @@ namespace TestProject.Infra
                         $"-p {port}:8080 " +
                         $"--network {network} " +
                         $"-d {ImageName}");
-
-                    Thread.Sleep(3000);
                 }
             }
         }

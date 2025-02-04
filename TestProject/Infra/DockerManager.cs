@@ -6,12 +6,19 @@ namespace TestProject.Infra
         {
             ProcessManager.ExecuteCommand("docker", $"network create {netowrkName}");
         }
-
-        public static void PullImageIfDoesNotExists(string imageName, string version = "latest")
+        public static bool ImageExists(string imageName, string version = "latest")
         {
             var imageId = ProcessManager.ExecuteCommand("docker", $"images -q {imageName}:{version}");
 
             if (string.IsNullOrEmpty(imageId))
+                return false;
+
+            return true;
+        }
+
+        public static void PullImageIfDoesNotExists(string imageName, string version = "latest")
+        {
+            if (!ImageExists(imageName,version))
                 ProcessManager.ExecuteCommand("docker", $"pull {imageName}:{version}");
         }
 
