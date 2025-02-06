@@ -22,12 +22,12 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Appli
 
         public ProcessamentoImagemController(IMediator mediator,
             IValidator<ProcessamentoImagem> validator,
-            IStorageService IStorageService,
+            IStorageService storageService,
             IValidator<ProcessamentoImagemUploadModel> uploadValidator)
         {
             _mediator = mediator;
             _validator = validator;
-            _storageService = IStorageService;
+            _storageService = storageService;
             _uploadValidator = uploadValidator;
         }
 

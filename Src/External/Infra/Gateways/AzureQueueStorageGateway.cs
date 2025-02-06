@@ -1,6 +1,7 @@
 ﻿using Azure.Storage.Queues;
 using Azure.Storage.Queues.Models;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Interfaces;
+using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Models;
 using Microsoft.Extensions.Configuration;
 
 namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Infra.Gateways
@@ -22,10 +23,23 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Infra
             _queueReceiverClient.CreateIfNotExists();
         }
 
-        public async Task<string> ReceiveMessagesAsync()
+        public async Task DeleteMessageAsync(MessageModel message)
+        {
+            await _queueReceiverClient.DeleteMessageAsync(message.MessageId, message.PopReceipt);
+        }
+
+        public async Task<MessageModel?> ReceiveMessageAsync()
         {
             QueueMessage message = await _queueReceiverClient.ReceiveMessageAsync();
-            return message.MessageText;
+
+            if (message == null) return null;
+
+            return new MessageModel
+            {
+                MessageId = message.MessageId,
+                PopReceipt = message.PopReceipt,
+                MessageText = message.MessageText
+            };
         }
 
         public async Task SendMessageAsync(string messageBody)

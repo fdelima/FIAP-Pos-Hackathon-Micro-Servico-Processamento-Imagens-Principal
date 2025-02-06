@@ -20,16 +20,25 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Api
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-
-            while (!stoppingToken.IsCancellationRequested)
+            try
             {
-                using (var scope = _serviceProvider.CreateScope())
+                while (!stoppingToken.IsCancellationRequested)
                 {
-                    var _processamentoImagemController = scope.ServiceProvider.GetRequiredService<IProcessamentoImagemController>();
-                    await Sender(_processamentoImagemController, stoppingToken);
-                    await Receiver(_processamentoImagemController, stoppingToken);
+                    using (var scope = _serviceProvider.CreateScope())
+                    {
+                        var _processamentoImagemController = scope.ServiceProvider.GetRequiredService<IProcessamentoImagemController>();
+                        await Sender(_processamentoImagemController, stoppingToken);
+                        await Receiver(_processamentoImagemController, stoppingToken);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+
         }
 
         private static async Task Sender(IProcessamentoImagemController _processamentoImagemController, CancellationToken stoppingToken)
@@ -47,13 +56,13 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Api
             }
 
             Console.WriteLine("Worker Send Service aguardando...");
-            await Task.Delay(TimeSpan.FromSeconds(60), stoppingToken);
+            await Task.Delay(TimeSpan.FromSeconds(1), stoppingToken);
         }
 
         private static async Task Receiver(IProcessamentoImagemController _processamentoImagemController, CancellationToken stoppingToken)
         {
             Console.WriteLine("Worker Receiver Service aguardando...");
-            await Task.Delay(TimeSpan.FromSeconds(60), stoppingToken);
+            await Task.Delay(TimeSpan.FromSeconds(1), stoppingToken);
 
             try
             {

@@ -12,6 +12,7 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
     {
         protected readonly IGateways<Notificacao> _notificacaoGateway;
         protected readonly IMessagerService _messagerService;
+        private readonly IStorageService _storageService;
 
         /// <summary>
         /// Lógica de negócio referentes ao pedido.
@@ -23,11 +24,13 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
         public ProcessamentoImagemService(IGateways<ProcessamentoImagem> gateway,
             IValidator<ProcessamentoImagem> validator,
             IGateways<Notificacao> notificacaoGateway,
-            IMessagerService messagerService)
+            IMessagerService messagerService,
+            IStorageService storageService)
             : base(gateway, validator)
         {
             _notificacaoGateway = notificacaoGateway;
             _messagerService = messagerService;
+            _storageService = storageService;
         }
 
         /// <summary>
@@ -79,43 +82,44 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
         /// </summary>
         public async Task<ModelResult> ReceiverMessageInQueueAsync()
         {
-            var result = new ModelResult();
+            var result = ModelResultFactory.SucessResult();
 
-            var messagesBody = await _messagerService.ReceiveMessagesAsync();
+            var message = await _messagerService.ReceiveMessageAsync();
 
-            foreach (var body in messagesBody)
+            try
             {
-                var msg = JsonSerializer.Deserialize<ProcessamentoImagemProcessModel>(body);
-
-                if (msg == null)
+                if (message != null)
                 {
-                    result.AddError(BusinessMessages.NotFoundError<ProcessamentoImagem>());
-                }
-                else
-                {
-                    try
+                    var msg = JsonSerializer.Deserialize<ProcessamentoImagemProcessModel>(message.MessageText);
+
+                    var item = await _gateway.FindByIdAsync(msg.IdProcessamentoImagem);
+                    if (item == null)
                     {
-
-                        var item = await _gateway.FindByIdAsync(msg.IdProcessamentoImagem);
-                        if (item == null)
-                        {
-                            result.AddError(BusinessMessages.NotFoundInError<ProcessamentoImagem>(msg.IdProcessamentoImagem));
-                            return result;
-                        }
-
-                        item.DataInicioProcessamento = msg.DataInicioProcessamento;
-
-                        if (msg.DataFimProcessamento != null)
-                            item.DataFimProcessamento = msg.DataFimProcessamento;
-
-                        await _gateway.UpdateAsync(item);
-                        result.AddMessage(ModelResultFactory.UpdateSucessResult<ProcessamentoImagem>(item).Messages);
+                        result.AddError(BusinessMessages.NotFoundInError<ProcessamentoImagem>(msg.IdProcessamentoImagem));
+                        return result;
                     }
-                    catch (Exception ex)
+
+                    item.DataInicioProcessamento = msg.DataInicioProcessamento;
+
+                    if (msg.DataFimProcessamento != null)
                     {
-                        result.AddError($"{body} {ex.Message}");
+                        item.DataFimProcessamento = msg.DataFimProcessamento;
+
+                        var fileUploaded = $"{msg.IdProcessamentoImagem}{Path.GetExtension(msg.NomeArquivo)}";
+                        await _storageService.DeleteFileAsync(Constants.BLOB_CONTAINER_NAME, fileUploaded);
                     }
+                    
+                    await _gateway.UpdateAsync(item);
+                    await _gateway.CommitAsync();
+
+                    await _messagerService.DeleteMessageAsync(message);
+
+                    result.AddMessage(ModelResultFactory.UpdateSucessResult<ProcessamentoImagem>(item).Messages);
                 }
+            }
+            catch (Exception ex)
+            {
+                result.AddError($"{ex.Message}");
             }
 
             return result;
@@ -150,6 +154,7 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
                     var entity = await _gateway.FindByIdAsync(item.IdProcessamentoImagem);
                     entity.DataEnviadoFila = msg.DataEnviadoFila;
                     await _gateway.UpdateAsync(entity);
+                    await _gateway.CommitAsync();
                     result.AddMessage($"{item.IdProcessamentoImagem.ToString()} :: Send Message To Queue Success!");
                 }
                 else
