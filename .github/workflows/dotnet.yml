@@ -50,6 +50,6 @@ jobs:
       with:
         context: ./
         file: ./Src/Api/Dockerfile
-        tags: ${{ secrets.DOCKER_USERNAME }}/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal-gurpo-71-api:fase5
+        tags: ${{ secrets.DOCKER_USERNAME }}/fiap-pos-hackathon-micro-servico-processamento-imagens-principal-gurpo-71-api:fase5
         push: true
 
