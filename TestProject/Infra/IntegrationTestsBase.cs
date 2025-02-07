@@ -9,7 +9,7 @@
         {
             _tests += 1;
             _mongoTestFixture = new MongoTestFixture(
-                databaseContainerName: "mongo-db-pagamento-test", port: "27019");
+                databaseContainerName: "mongo-db-processamento-imagens-principal-test", port: "27019");
             Thread.Sleep(15000);
         }
 
