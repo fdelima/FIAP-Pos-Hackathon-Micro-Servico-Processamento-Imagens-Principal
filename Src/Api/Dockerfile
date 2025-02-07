@@ -9,19 +9,19 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Src/Api/FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Api.csproj", "Src/Api/"]
-COPY ["Src/Core/Ioc/FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Ioc.csproj", "Src/Core/Ioc/"]
-COPY ["Src/Core/Application/FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Application.csproj", "Src/Core/Application/"]
-COPY ["Src/Core/Domain/FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.csproj", "Src/Core/Domain/"]
-COPY ["Src/External/Infra/FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Infra.csproj", "Src/Adapter/Driven/Infra/"]
-RUN dotnet restore "./Src/Api/FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Api.csproj"
+COPY ["Src/Api/Api.csproj", "Src/Api/"]
+COPY ["Src/Core/Ioc/Ioc.csproj", "Src/Core/Ioc/"]
+COPY ["Src/Core/Application/Application.csproj", "Src/Core/Application/"]
+COPY ["Src/Core/Domain/Domain.csproj", "Src/Core/Domain/"]
+COPY ["Src/External/Infra/Infra.csproj", "Src/Adapter/Driven/Infra/"]
+RUN dotnet restore "./Src/Api/Api.csproj"
 COPY . .
 WORKDIR "/src/Src/Api"
-RUN dotnet build "./FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "./Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
