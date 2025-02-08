@@ -39,6 +39,7 @@ namespace TestProject.UnitTest.Domain
             ///Arrange
             var notificacao = new Notificacao
             {
+                IdNotificacao = Guid.NewGuid(),
                 Usuario = usuario,
                 Mensagem = mensagem
             };
@@ -61,6 +62,7 @@ namespace TestProject.UnitTest.Domain
             ///Arrange
             var notificacao = new Notificacao
             {
+                IdNotificacao = Guid.NewGuid(),
                 Usuario = usuario,
                 Mensagem = mensagem
             };

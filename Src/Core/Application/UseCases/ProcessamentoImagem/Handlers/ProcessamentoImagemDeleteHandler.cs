@@ -7,9 +7,9 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Appli
 {
     public class ProcessamentoImagemDeleteHandler : IRequestHandler<ProcessamentoImagemDeleteCommand, ModelResult>
     {
-        private readonly IProcessamentoImagemService _service;
+        private readonly IService<Domain.Entities.ProcessamentoImagem> _service;
 
-        public ProcessamentoImagemDeleteHandler(IProcessamentoImagemService service)
+        public ProcessamentoImagemDeleteHandler(IService<Domain.Entities.ProcessamentoImagem> service)
         {
             _service = service;
         }

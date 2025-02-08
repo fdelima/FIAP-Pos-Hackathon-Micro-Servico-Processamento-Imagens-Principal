@@ -5,25 +5,25 @@ using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Ex
 namespace TestProject.MockData
 {
     /// <summary>
-    /// Mock de dados das ações
+    /// Mock de dados das aÃ§Ãµes
     /// </summary>
     public class NotificacaoMock
     {
         /// <summary>
-        /// Mock de dados válidos
+        /// Mock de dados vÃ¡lidos
         /// </summary>
         public static IEnumerable<object[]> ObterDadosValidos(int quantidade)
         {
             for (var index = 1; index <= quantidade; index++)
                 yield return new object[]
                 {
-                    "Usuário",
-                    "Mensagem de teste",
+                    $"usuario{index}@fiap.com.br",
+                    $"Mensagem de teste {index}",
                 };
         }
 
         /// <summary>
-        /// Mock de dados inválidos
+        /// Mock de dados invÃ¡lidos
         /// </summary>
         public static IEnumerable<object[]> ObterDadosInvalidos(int quantidade)
         {
@@ -36,9 +36,9 @@ namespace TestProject.MockData
         }
 
         /// <summary>
-        /// Mock de dados válidos
+        /// Mock de dados vÃ¡lidos
         /// </summary>
-        /// Mock de dados válidos para consulta
+        /// Mock de dados vÃ¡lidos para consulta
         /// </summary>
         public static IEnumerable<object[]> ObterDadosConsultaValidos(int quantidade)
         {
@@ -51,8 +51,8 @@ namespace TestProject.MockData
                     {
                         IdNotificacao = Guid.NewGuid(),
                         Data = DateTime.Now,
-                        Mensagem = "Mensagem de teste",
-                        Usuario = "Usuário"
+                        Mensagem = $"Mensagem de teste {index}",
+                        Usuario = $"usuario{index}@fiap.com.br"
                     });
                 }
                 var param = new PagingQueryParam<Notificacao>() { CurrentPage = 1, Take = 10 };
@@ -66,7 +66,7 @@ namespace TestProject.MockData
         }
 
         /// <summary>
-        /// Mock de dados inválidos
+        /// Mock de dados invÃ¡lidos
         /// </summary>
         public static IEnumerable<object[]> ObterDadosConsultaInValidos(int quantidade)
         {
@@ -79,8 +79,8 @@ namespace TestProject.MockData
                     {
                         IdNotificacao = Guid.NewGuid(),
                         Data = DateTime.Now,
-                        Mensagem = "Mensagem de teste",
-                        Usuario = "Usuário"
+                        Mensagem = $"Mensagem de teste {index}",
+                        Usuario = string.Empty
                     });
                 }
                 var param = new PagingQueryParam<Notificacao>() { CurrentPage = 1, Take = 10 };
@@ -94,7 +94,7 @@ namespace TestProject.MockData
         }
 
         /// <summary>
-        /// Mock de dados Válidos
+        /// Mock de dados VÃ¡lidos
         /// </summary>
         public static IEnumerable<object[]> ObterDadosConsultaPorIdValidos(int quantidade)
         {
@@ -106,7 +106,7 @@ namespace TestProject.MockData
         }
 
         /// <summary>
-        /// Mock de dados inválidos
+        /// Mock de dados invÃ¡lidos
         /// </summary>
         public static IEnumerable<object[]> ObterDadosConsultaPorIdInvalidos(int quantidade)
         {
