@@ -5,7 +5,7 @@ using MongoDB.EntityFrameworkCore.Extensions;
 
 namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Infra.Mappings;
 
-internal class PedidoMap : IEntityTypeConfiguration<ProcessamentoImagem>
+internal class ProcessamentoImagemMap : IEntityTypeConfiguration<ProcessamentoImagem>
 {
     public void Configure(EntityTypeBuilder<ProcessamentoImagem> builder)
     {

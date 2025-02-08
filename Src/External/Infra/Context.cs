@@ -22,7 +22,7 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Infra
             //TODO: Map :: 2 - Adicione sua configuração aqui
 
             modelBuilder.ApplyConfiguration(new NotificacaoMap());
-            modelBuilder.ApplyConfiguration(new PedidoMap());
+            modelBuilder.ApplyConfiguration(new ProcessamentoImagemMap());
 
             base.OnModelCreating(modelBuilder);
 
