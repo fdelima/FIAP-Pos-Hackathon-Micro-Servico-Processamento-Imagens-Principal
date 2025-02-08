@@ -21,14 +21,15 @@ Atender à demanda dos investidores por uma solução mais completa, que permita
 
 # Entregáveis:
  - Documentação da arquitetura proposta para o projeto;
-   > *  ![Arquitetura proposta](https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal/blob/develop/Documentacao/FIAP-Pos-Tech-Hackathon-Arquitetura.drawio.svg)
- 
- 
+   > *  ![Arquitetura proposta](/Documentacao/FIAP-Pos-Tech-Hackathon-Arquitetura.drawio.svg)
+>
  - Script de criação do banco de dados ou de outros recursos utilizados;
-    > *  
- 
+    > *  ![Code First](/Documentacao/Banco_de_Dados_Code_First_Ef.png)
+        - Não foi necessário geração de script de banco de dados, pois, foi utilizado "Code First" com tecnica de desenvolvimento. O banco de dados e criado ou alterado de acordo com as entidade mapedas no Entity Framework na camada de Infra. [Mais detalhes sobre code first](https://learn.microsoft.com/pt-br/ef/ef6/modeling/code-first/workflows/new-database)
+ >
  - Link do Github do(s) projeto(s);
     > *  [Microserviço Principal](https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal)
     > *  [Microserviço de produção](https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Producao)
+>
  - Vídeo de nomáximo 10 minutos apresentando: Documentação, Arquitetura escolhida e o projeto funcionando.
     > *  [Video Yutube]()

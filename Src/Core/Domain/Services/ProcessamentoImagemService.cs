@@ -17,10 +17,11 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
         /// <summary>
         /// Lógica de negócio referentes ao pedido.
         /// </summary>
-        /// <param name="gateway">Gateway de pedido a ser injetado durante a execução</param>
+        /// <param name="gateway">Gateway de processamento de imagem a ser injetado durante a execução</param>
         /// <param name="validator">abstração do validador a ser injetado durante a execução</param>
+        /// <param name="messagerService">Serviço de mensageria a ser injetado durante a execução</param>
         /// <param name="notificacaoGateway">Gateway de notificação a ser injetado durante a execução</param>
-        /// <param name="MercadoPagoWebhoockGateway">Gateway de MercadoPagoWebhoock a ser injetado durante a execução</param>
+        /// <param name="storageService">Serviço de storage a ser injetado durante a execução</param>
         public ProcessamentoImagemService(IGateways<ProcessamentoImagem> gateway,
             IValidator<ProcessamentoImagem> validator,
             IGateways<Notificacao> notificacaoGateway,
