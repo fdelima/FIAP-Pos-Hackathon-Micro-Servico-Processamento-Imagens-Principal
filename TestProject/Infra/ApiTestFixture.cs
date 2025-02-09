@@ -31,6 +31,8 @@ namespace TestProject.Infra
                         $"-p {port}:8080 " +
                         $"--network {network} " +
                         $"-d {ImageName}");
+
+                    Thread.Sleep(3000);
                 }
             }
         }

@@ -8,8 +8,10 @@
         public IntegrationTestsBase()
         {
             _tests += 1;
+
             _mongoTestFixture = new MongoTestFixture(
                 databaseContainerName: "mongo-db-processamento-imagens-principal-test", port: "27019");
+            
             Thread.Sleep(15000);
         }
 
