@@ -29,7 +29,7 @@ namespace TestProject.IntegrationTest.External
         /// </summary>
         [Theory]
         [MemberData(nameof(ObterDados), enmTipo.Inclusao, true, 3)]
-        public async void InserirComDadosValidos(DateTime data, string usuario, DateTime dataEnvio, string nomeArquivo, string nomeArquivoZipDownload, long tamanhoArquivo)
+        public async Task InserirComDadosValidos(DateTime data, string usuario, DateTime dataEnvio, string nomeArquivo, string nomeArquivoZipDownload, long tamanhoArquivo)
         {
             ///Arrange
             var processamentoImagem = new ProcessamentoImagem
@@ -64,7 +64,7 @@ namespace TestProject.IntegrationTest.External
         /// </summary>
         [Theory]
         [MemberData(nameof(ObterDados), enmTipo.Alteracao, true, 3)]
-        public async void AlterarComDadosValidos(Guid idProcessamentoImagem, DateTime data, string usuario, DateTime dataEnvio, string nomeArquivo, string nomeArquivoZipDownload, long tamanhoArquivo)
+        public async Task AlterarComDadosValidos(Guid idProcessamentoImagem, DateTime data, string usuario, DateTime dataEnvio, string nomeArquivo, string nomeArquivoZipDownload, long tamanhoArquivo)
         {
             ///Arrange
             var processamentoImagem = new ProcessamentoImagem
@@ -111,7 +111,7 @@ namespace TestProject.IntegrationTest.External
         /// </summary>
         [Theory]
         [MemberData(nameof(ObterDados), enmTipo.Alteracao, true, 1)]
-        public async void DeletarProcessamentoImagem(Guid idProcessamentoImagem, DateTime data, string usuario, DateTime dataEnvio, string nomeArquivo, string nomeArquivoZipDownload, long tamanhoArquivo)
+        public async Task DeletarProcessamentoImagem(Guid idProcessamentoImagem, DateTime data, string usuario, DateTime dataEnvio, string nomeArquivo, string nomeArquivoZipDownload, long tamanhoArquivo)
         {
             ///Arrange
             var processamentoImagem = new ProcessamentoImagem
@@ -153,7 +153,7 @@ namespace TestProject.IntegrationTest.External
         /// </summary>
         [Theory]
         [MemberData(nameof(ObterDados), enmTipo.Alteracao, true, 1)]
-        public async void ConsultarProcessamentoImagemPorId(Guid idProcessamentoImagem, DateTime data, string usuario, DateTime dataEnvio, string nomeArquivo, string nomeArquivoZipDownload, long tamanhoArquivo)
+        public async Task ConsultarProcessamentoImagemPorId(Guid idProcessamentoImagem, DateTime data, string usuario, DateTime dataEnvio, string nomeArquivo, string nomeArquivoZipDownload, long tamanhoArquivo)
         {
             ///Arrange
             var processamentoImagem = new ProcessamentoImagem

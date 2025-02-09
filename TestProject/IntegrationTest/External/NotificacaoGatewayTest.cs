@@ -29,7 +29,7 @@ namespace TestProject.IntegrationTest.External
         /// </summary>
         [Theory]
         [MemberData(nameof(ObterDados), enmTipo.Inclusao, true, 3)]
-        public async void InserirComDadosValidos(string usuario, string mensagem)
+        public async Task InserirComDadosValidos(string usuario, string mensagem)
         {
             ///Arrange
             var notificacao = new Notificacao
@@ -61,7 +61,7 @@ namespace TestProject.IntegrationTest.External
         /// </summary>
         [Theory]
         [MemberData(nameof(ObterDados), enmTipo.Alteracao, true, 3)]
-        public async void AlterarComDadosValidos(Guid idNotificacao, string usuario, string mensagem)
+        public async Task AlterarComDadosValidos(Guid idNotificacao, string usuario, string mensagem)
         {
             ///Arrange
             var notificacao = new Notificacao
@@ -105,7 +105,7 @@ namespace TestProject.IntegrationTest.External
         /// </summary>
         [Theory]
         [MemberData(nameof(ObterDados), enmTipo.Alteracao, true, 1)]
-        public async void DeletarNotificacao(Guid idNotificacao, string usuario, string mensagem)
+        public async Task DeletarNotificacao(Guid idNotificacao, string usuario, string mensagem)
         {
             ///Arrange
             var notificacao = new Notificacao
@@ -144,7 +144,7 @@ namespace TestProject.IntegrationTest.External
         /// </summary>
         [Theory]
         [MemberData(nameof(ObterDados), enmTipo.Alteracao, true, 1)]
-        public async void ConsultarNotificacaoPorId(Guid idNotificacao, string usuario, string mensagem)
+        public async Task ConsultarNotificacaoPorId(Guid idNotificacao, string usuario, string mensagem)
         {
             ///Arrange
             var notificacao = new Notificacao
