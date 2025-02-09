@@ -1,9 +1,7 @@
-using Microsoft.EntityFrameworkCore;
-
 namespace TestProject.Infra
 {
     public class AzuriteTestFixture : IDisposable
-    {                
+    {
         private const string ImageName = "mcr.microsoft.com/azure-storage/azurite:latest";
 
         string _port; string _databaseContainerName;

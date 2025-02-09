@@ -1,15 +1,13 @@
-﻿using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Models;
-using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain;
-using System.Net.Http.Json;
-using TestProject.Infra;
-using Xunit.Gherkin.Quick;
+﻿using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Entities;
-using Newtonsoft.Json;
-using NSubstitute;
+using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
+using Newtonsoft.Json;
+using System.Net.Http.Json;
 using System.Text;
-using System.Net.Mime;
+using TestProject.Infra;
+using Xunit.Gherkin.Quick;
 
 namespace TestProject.ComponenteTest
 {
@@ -39,7 +37,7 @@ namespace TestProject.ComponenteTest
         [Given(@"Recebendo um ProcessamentoImagem")]
         public void PrepararProcessamentoImagem()
         {
-           
+
 
             _ProcessamentoImagem = new ProcessamentoImagem
             {

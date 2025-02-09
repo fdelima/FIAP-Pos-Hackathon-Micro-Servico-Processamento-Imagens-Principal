@@ -109,7 +109,7 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
                         var fileUploaded = $"{msg.IdProcessamentoImagem}{Path.GetExtension(msg.NomeArquivo)}";
                         await _storageService.DeleteFileAsync(Constants.BLOB_CONTAINER_NAME, fileUploaded);
                     }
-                    
+
                     await _gateway.UpdateAsync(item);
                     await _gateway.CommitAsync();
 

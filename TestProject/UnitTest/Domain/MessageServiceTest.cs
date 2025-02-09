@@ -1,10 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Interfaces;
+﻿using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Interfaces;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Models;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Services;
 using NSubstitute;
-using Xunit;
 
 namespace TestProject.UnitTest.Domain
 {
@@ -36,7 +33,8 @@ namespace TestProject.UnitTest.Domain
         public async Task ReceiveMessageAsync_ShouldCallGateway()
         {
             // Arrange
-            var messageModel = new MessageModel {
+            var messageModel = new MessageModel
+            {
                 MessageId = "1",
                 PopReceipt = "Test receipt",
                 MessageText = "Test message"

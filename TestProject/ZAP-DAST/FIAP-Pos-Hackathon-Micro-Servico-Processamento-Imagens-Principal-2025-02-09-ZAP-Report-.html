@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fase 5 da Fiap Pos Tech - Hackathon - Processamento de Imagens</title>
+<link
+	href="FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal-2025-02-09-ZAP-Report-/normalize/normalize.css" rel="stylesheet">
+<link
+	href="FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal-2025-02-09-ZAP-Report-/themes/original/main.css" rel="stylesheet">
+<link
+	href="FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal-2025-02-09-ZAP-Report-/themes/original/colors.css" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<h1>Fase 5 da Fiap Pos Tech - Hackathon - Processamento de Imagens</h1>
+		<p>
+			<span>Generated with</span> <a href="https://zaproxy.org"><img
+				src="FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal-2025-02-09-ZAP-Report-/zap32x32.png" alt="The ZAP logo" class="zap-logo">ZAP</a>
+			<span>on dom. 9 fev. 2025, at 18:19:29</span>
+		</p>
+		<p>ZAP Version: 2.16.0</p>
+		<p>
+			ZAP by <a href="https://checkmarx.com/">Checkmarx</a>
+		</p>
+	</header>
+
+	<main>
+
+		<section id="contents" class="contents">
+			<h2>Contents</h2>
+			<nav>
+				<ol>
+					<li><a
+						href="#about-this-report">About this report</a>
+						<ol>
+							
+							<li><a
+								href="#report-parameters">Report parameters</a></li>
+						</ol></li>
+					<data-th-block>
+					<li><a
+						href="#summaries">Summaries</a>
+						<ol>
+							<li><a
+								href="#risk-confidence-counts">Alert counts by risk and confidence</a></li>
+							<li><a
+								href="#site-risk-counts">Alert counts by site and risk</a></li>
+							<li><a
+								href="#alert-type-counts">Alert counts by alert type</a></li>
+						</ol></li>
+					<li><a
+						href="#alerts">Alerts</a>
+						<ol>
+							
+							 
+							 
+							
+							
+							
+							
+							<li><a
+								href="#alerts--risk-1-confidence-3"><span>Risk</span>=<span
+									class="risk-level">Baixo</span>, <span>Confidence</span>=<span
+									class="confidence-level">Alto</span> <span>(1)</span></a></li>
+							
+							<li><a
+								href="#alerts--risk-1-confidence-2"><span>Risk</span>=<span
+									class="risk-level">Baixo</span>, <span>Confidence</span>=<span
+									class="confidence-level">Médio</span> <span>(1)</span></a></li>
+							
+							
+							  
+							
+							
+							
+							
+							
+							
+							
+							
+							<li><a
+								href="#alerts--risk-0-confidence-1"><span>Risk</span>=<span
+									class="risk-level">Informativo</span>, <span>Confidence</span>=<span
+									class="confidence-level">Baixo</span> <span>(1)</span></a></li>
+							  
+						</ol></li>
+					<li><a
+						href="#appendix">Appendix</a>
+						<ol>
+							<li><a
+								href="#alert-types">Alert types</a></li>
+						</ol></li>
+					</data-th-block>
+				</ol>
+			</nav>
+		</section>
+
+		<section
+			id="about-this-report" class="about-this-report">
+			<h2>About this report</h2>
+
+			
+
+			<section
+				id="report-parameters">
+				<h3>Report parameters</h3>
+				<div class="report-parameters--container">
+					<h4>Contexts</h4>
+					
+					
+					<p>No contexts were selected, so all contexts were included by default.</p>
+					  
+
+					<h4>Sites</h4>
+					
+					<p>The following sites were included:</p>
+					<ul class="sites-list">
+						<li><span class="site">https://localhost:53031</span></li>
+					</ul>
+					
+					<p>(If no sites were selected, all sites were included by default.)</p>
+					<p>An included site must also be within one of the included contexts for its data to be included in the report.</p>
+
+					<h4>Risk levels</h4>
+					<p>
+						<span>Included</span>:
+						 
+						<span class="included-risk-codes"><span class="risk-level">Alto</span>, <span class="risk-level">Médio</span>, <span class="risk-level">Baixo</span>, <span class="risk-level">Informativo</span></span>
+					</p>
+					<p>
+						<span>Excluded</span>:
+						 <span>None</span>
+						
+					</p>
+
+					<h4>Confidence levels</h4>
+					<p>
+						<span>Included</span>:
+						
+						
+						<span class="included-confidence-codes"><span class="confidence-level">User Confirmed</span>, <span class="confidence-level">Alto</span>, <span class="confidence-level">Médio</span>, <span class="confidence-level">Baixo</span></span>
+					</p>
+					<p>
+						<span>Excluded</span>:
+						
+						
+						<span class="included-confidence-codes"> <span class="confidence-level">User Confirmed</span>, <span class="confidence-level">Alto</span>, <span class="confidence-level">Médio</span>, <span class="confidence-level">Baixo</span>, <span class="confidence-level">Falso Positivo</span></span>
+					</p>
+				</div>
+			</section>
+		</section>
+
+		
+		<section>
+			
+		</section>
+		
+		<section id="summaries" class="summaries">
+			<h2>Summaries</h2>
+
+			<section
+				id="risk-confidence-counts">
+				<h3>Alert counts by risk and confidence</h3>
+				<table class="risk-confidence-counts-table">
+					<caption>
+						<p>This table shows the number of alerts for each level of risk and confidence included in the report.</p>
+						<p>(The percentages in brackets represent the count as a percentage of the total number of alerts included in the report, rounded to one decimal place.)</p>
+					</caption>
+					<colgroup>
+						<col>
+						<col>
+					</colgroup>
+					<colgroup>
+						<col
+							style="width: 14.0%"><col
+							style="width: 14.0%"><col
+							style="width: 14.0%"><col
+							style="width: 14.0%">
+						<col style="width: 14.0%">
+					</colgroup>
+					<thead>
+						<tr>
+							<td colspan="2" rowspan="2"></td>
+							<th scope="colgroup"
+								colspan="5">Confidence</th>
+						</tr>
+						<tr>
+							<th scope="col">User Confirmed</th>
+							<th scope="col">Alto</th>
+							<th scope="col">Médio</th>
+							<th scope="col">Baixo</th>
+							<th scope="col">Total</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="rowgroup"
+								rowspan="5">Risk</th>
+							<th scope="row">Alto</th>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0%)</span></td>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0%)</span></td>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0%)</span></td>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0%)</span></td>
+							<td><span>0</span><br> <span class="additional-info-percentages">(0,0%)</span></td>
+						</tr>
+						<tr>
+							
+							<th scope="row">Médio</th>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0%)</span></td>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0%)</span></td>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0%)</span></td>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0%)</span></td>
+							<td><span>0</span><br> <span class="additional-info-percentages">(0,0%)</span></td>
+						</tr>
+						<tr>
+							
+							<th scope="row">Baixo</th>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0%)</span></td>
+							<td><span>1</span><br> <span
+								class="additional-info-percentages">(33,3%)</span></td>
+							<td><span>1</span><br> <span
+								class="additional-info-percentages">(33,3%)</span></td>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0%)</span></td>
+							<td><span>2</span><br> <span class="additional-info-percentages">(66,7%)</span></td>
+						</tr>
+						<tr>
+							
+							<th scope="row">Informativo</th>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0%)</span></td>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0%)</span></td>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0%)</span></td>
+							<td><span>1</span><br> <span
+								class="additional-info-percentages">(33,3%)</span></td>
+							<td><span>1</span><br> <span class="additional-info-percentages">(33,3%)</span></td>
+						</tr>
+						<tr>
+							<th scope="row">Total</th>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0,0%)</span></td>
+							<td><span>1</span><br> <span
+								class="additional-info-percentages">(33,3%)</span></td>
+							<td><span>1</span><br> <span
+								class="additional-info-percentages">(33,3%)</span></td>
+							<td><span>1</span><br> <span
+								class="additional-info-percentages">(33,3%)</span></td>
+							<td><span>3</span><br> <span
+								class="additional-info-percentages">(100%)</span></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section
+				id="site-risk-counts">
+				<h3>Alert counts by site and risk</h3>
+				<table class="site-risk-counts-table">
+					<caption>
+						<p>This table shows, for each site for which one or more alerts were raised, the number of alerts raised at each risk level.</p>
+						<p>Alerts with a confidence level of &quot;False Positive&quot; have been excluded from these counts.</p>
+						<p>(The numbers in brackets are the number of alerts raised for the site at or above that risk level.)</p>
+					</caption>
+					<colgroup>
+						<col>
+						<col>
+					</colgroup>
+					<colgroup>
+						<col
+							style="width: 16.25%"><col
+							style="width: 16.25%"><col
+							style="width: 16.25%"><col
+							style="width: 16.25%">
+					</colgroup>
+					<thead>
+						<tr>
+							<td colspan="2" rowspan="2"></td>
+							<th scope="colgroup" colspan="4">Risk</th>
+						</tr>
+						<tr>
+							<th scope="col">
+								<span>Alto</span><br>  <span
+									class="additional-info-percentages">(= Alto)</span>  
+							</th>
+							<th scope="col">
+								<span>Médio</span><br>   <span
+									class="additional-info-percentages">(&gt;= Médio)</span> 
+							</th>
+							<th scope="col">
+								<span>Baixo</span><br>   <span
+									class="additional-info-percentages">(&gt;= Baixo)</span> 
+							</th>
+							<th scope="col">
+								<span>Informativo</span><br>   <span
+									class="additional-info-percentages">(&gt;= Informativo)</span> 
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="rowgroup"
+								rowspan="1">Site</th>
+							<th scope="row">https://localhost:53031</th>
+							
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0)</span></td>
+							<td><span>0</span><br> <span
+								class="additional-info-percentages">(0)</span></td>
+							<td><span>2</span><br> <span
+								class="additional-info-percentages">(2)</span></td>
+							<td><span>1</span><br> <span
+								class="additional-info-percentages">(3)</span></td>
+							
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section
+				id="alert-type-counts">
+				<h3>Alert counts by alert type</h3>
+				<table class="alert-type-counts-table">
+					<caption>
+						<p>This table shows the number of alerts of each alert type, together with the alert type&#39;s risk level.</p>
+						<p>(The percentages in brackets represent each count as a percentage, rounded to one decimal place, of the total number of alerts included in this report.)</p>
+					</caption>
+					<thead>
+						<tr>
+							<th scope="col">Alert type</th>
+							<th scope="col">Risk</th>
+							<th scope="col">Count</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row"><a
+								href="#alert-type-0">Strict-Transport-Security Header Not Set</a></th>
+							<td class="risk-level">Baixo</td>
+							<td><span>4</span><br> <span
+								class="additional-info-percentages">(133,3%)</span></td>
+						</tr>
+						<tr>
+							<th scope="row"><a
+								href="#alert-type-1">X-Content-Type-Options Header Missing</a></th>
+							<td class="risk-level">Baixo</td>
+							<td><span>2</span><br> <span
+								class="additional-info-percentages">(66,7%)</span></td>
+						</tr>
+						<tr>
+							<th scope="row"><a
+								href="#alert-type-2">Re-examine Cache-control Directives</a></th>
+							<td class="risk-level">Informativo</td>
+							<td><span>2</span><br> <span
+								class="additional-info-percentages">(66,7%)</span></td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<th scope="row">Total</th>
+							<td></td>
+							<td>3</td>
+						</tr>
+					</tfoot>
+				</table>
+			</section>
+		</section>
+
+		<section id="alerts" class="alerts">
+			<h2>Alerts</h2>
+			<ol>
+				
+				 
+				 
+				 
+				
+				
+				<li id="alerts--risk-1-confidence-3">
+					<h3>
+						<span>Risk</span>=<span
+							class="risk-level">Baixo</span>, <span>Confidence</span>=<span
+							class="confidence-level">Alto</span> <span>(1)</span>
+					</h3>
+					<ol>
+						
+						<li class="alerts--site-li">
+							<h4>
+								<span class="site">https://localhost:53031</span> <span>(1)</span>
+							</h4>
+							<ol>
+								
+								<li>
+									<h5>
+										<a
+											href="#alert-type-0">Strict-Transport-Security Header Not Set</a> <span>(1)</span>
+									</h5>
+									<ol>
+										<li><details>
+												<summary>
+													<span class="request-method-n-url">GET https://localhost:53031/sitemap.xml</span>
+												</summary>
+												
+<table class="alerts-table">
+	<tr>
+		<th scope="row">Alert tags</th>
+		<td>
+			<ul class="alert-tags-list">
+				<li>
+					<span><a href="https://owasp.org/Top10/A05_2021-Security_Misconfiguration/">OWASP_2021_A05</a></span> 
+				</li>
+				<li>
+					<span><a href="https://owasp.org/www-project-top-ten/2017/A6_2017-Security_Misconfiguration.html">OWASP_2017_A06</a></span> 
+				</li>
+				<li>
+					<span><a href="https://cwe.mitre.org/data/definitions/319.html">CWE-319</a></span> 
+				</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">Alert description</th>
+		<td> 
+<p>HTTP Strict Transport Security (HSTS) is a web security policy mechanism whereby a web server declares that complying user agents (such as a web browser) are to interact with it using only secure HTTPS connections (i.e. HTTP layered over TLS/SSL). HSTS is an IETF standards track protocol and is specified in RFC 6797.</p>
+ </td>
+	</tr>
+	
+	<tr>
+		<th scope="row">Request</th>
+		<td><details open="open">
+				<summary>Request line and header section (243 bytes)</summary>
+				
+				<pre><code>GET https://localhost:53031/sitemap.xml HTTP/1.1
+host: localhost:53031
+user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+pragma: no-cache
+cache-control: no-cache
+
+</code></pre>
+				
+				
+			</details> <details class="request-body" open="open">
+				<summary>Request body (0 bytes)</summary>
+				
+				<pre><code></code></pre>
+				
+				
+			</details></td>
+	</tr>
+	<tr>
+		<th scope="row">Response</th>
+		<td><details open="open">
+				<summary>Status line and header section (99 bytes)</summary>
+				
+				<pre><code>HTTP/1.1 404 Not Found
+Content-Length: 0
+Date: Sun, 09 Feb 2025 21:10:12 GMT
+Server: Kestrel
+
+</code></pre>
+				
+				
+			</details> <details class="response-body" open="open">
+				<summary>Response body (0 bytes)</summary>
+				
+				<pre><code></code></pre>
+				
+				
+			</details></td>
+	</tr>
+	
+	
+	
+	<tr>
+		<th scope="row">Solution</th>
+		<td> 
+<p>Ensure that your web server, application server, load balancer, etc. is configured to enforce Strict-Transport-Security.</p>
+ </td>
+	</tr>
+</table>
+
+											</details></li>
+									</ol>
+								</li>
+								
+							</ol>
+						</li>
+						
+					</ol>
+				</li>
+				
+				<li id="alerts--risk-1-confidence-2">
+					<h3>
+						<span>Risk</span>=<span
+							class="risk-level">Baixo</span>, <span>Confidence</span>=<span
+							class="confidence-level">Médio</span> <span>(1)</span>
+					</h3>
+					<ol>
+						
+						<li class="alerts--site-li">
+							<h4>
+								<span class="site">https://localhost:53031</span> <span>(1)</span>
+							</h4>
+							<ol>
+								
+								<li>
+									<h5>
+										<a
+											href="#alert-type-1">X-Content-Type-Options Header Missing</a> <span>(1)</span>
+									</h5>
+									<ol>
+										<li><details>
+												<summary>
+													<span class="request-method-n-url">GET https://localhost:53031/api/Notificacao</span>
+												</summary>
+												
+<table class="alerts-table">
+	<tr>
+		<th scope="row">Alert tags</th>
+		<td>
+			<ul class="alert-tags-list">
+				<li>
+					<span><a href="https://cwe.mitre.org/data/definitions/693.html">CWE-693</a></span> 
+				</li>
+				<li>
+					<span><a href="https://owasp.org/Top10/A05_2021-Security_Misconfiguration/">OWASP_2021_A05</a></span> 
+				</li>
+				<li>
+					<span><a href="https://owasp.org/www-project-top-ten/2017/A6_2017-Security_Misconfiguration.html">OWASP_2017_A06</a></span> 
+				</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">Alert description</th>
+		<td> 
+<p>The Anti-MIME-Sniffing header X-Content-Type-Options was not set to &#39;nosniff&#39;. This allows older versions of Internet Explorer and Chrome to perform MIME-sniffing on the response body, potentially causing the response body to be interpreted and displayed as a content type other than the declared content type. Current (early 2014) and legacy versions of Firefox will use the declared content type (if one is set), rather than performing MIME-sniffing.</p>
+ </td>
+	</tr>
+	<tr>
+		<th scope="row">Other info</th>
+		<td> 
+<p>This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.</p>
+
+<p>At &quot;High&quot; threshold this scan rule will not alert on client or server error responses.</p>
+ </td>
+	</tr>
+	<tr>
+		<th scope="row">Request</th>
+		<td><details open="open">
+				<summary>Request line and header section (247 bytes)</summary>
+				
+				<pre><code>GET https://localhost:53031/api/Notificacao HTTP/1.1
+host: localhost:53031
+user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+pragma: no-cache
+cache-control: no-cache
+
+</code></pre>
+				
+				
+			</details> <details class="request-body" open="open">
+				<summary>Request body (0 bytes)</summary>
+				
+				<pre><code></code></pre>
+				
+				
+			</details></td>
+	</tr>
+	<tr>
+		<th scope="row">Response</th>
+		<td><details open="open">
+				<summary>Status line and header section (141 bytes)</summary>
+				
+				<pre><code>HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Sun, 09 Feb 2025 21:10:12 GMT
+Server: Kestrel
+content-length: 859
+
+</code></pre>
+				
+				
+			</details> <details class="response-body" open="open">
+				<summary>Response body (859 bytes)</summary>
+				
+				<pre><code>{&quot;content&quot;:[{&quot;idNotificacao&quot;:&quot;b2c4c46c-ad31-49c8-b7ec-5b8bf8400acd&quot;,&quot;data&quot;:&quot;0001-01-01T00:00:00Z&quot;,&quot;mensagem&quot;:&quot;Arquivo recebido com sucesso!&quot;,&quot;usuario&quot;:&quot;fernando@umavida.com&quot;},{&quot;idNotificacao&quot;:&quot;c4dedcaf-e425-438d-a2da-4c3fad3e418a&quot;,&quot;data&quot;:&quot;0001-01-01T00:00:00Z&quot;,&quot;mensagem&quot;:&quot;Arquivo recebido com sucesso!&quot;,&quot;usuario&quot;:&quot;fernando@umavida.com&quot;},{&quot;idNotificacao&quot;:&quot;34a91d49-0ca7-497b-981b-b62fd3cf4f86&quot;,&quot;data&quot;:&quot;0001-01-01T00:00:00Z&quot;,&quot;mensagem&quot;:&quot;Arquivo recebido com sucesso!&quot;,&quot;usuario&quot;:&quot;fernando@umavida.com&quot;},{&quot;idNotificacao&quot;:&quot;e0243fec-ff92-483b-a95d-56805d1f5f67&quot;,&quot;data&quot;:&quot;0001-01-01T00:00:00Z&quot;,&quot;mensagem&quot;:&quot;Arquivo recebido com sucesso!&quot;,&quot;usuario&quot;:&quot;fernando@umavida.com&quot;},{&quot;idNotificacao&quot;:&quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,&quot;data&quot;:&quot;2025-02-09T03:48:19.402Z&quot;,&quot;mensagem&quot;:&quot;string&quot;,&quot;usuario&quot;:&quot;string&quot;}],&quot;totalElements&quot;:5,&quot;take&quot;:10,&quot;numberOfElements&quot;:5,&quot;totalPages&quot;:1}</code></pre>
+				
+				
+			</details></td>
+	</tr>
+	<tr>
+		<th scope="row">Parameter</th>
+		<td><pre><code>x-content-type-options</code></pre></td>
+	</tr>
+	
+	
+	<tr>
+		<th scope="row">Solution</th>
+		<td> 
+<p>Ensure that the application/web server sets the Content-Type header appropriately, and that it sets the X-Content-Type-Options header to &#39;nosniff&#39; for all web pages.</p>
+
+<p>If possible, ensure that the end user uses a standards-compliant and modern web browser that does not perform MIME-sniffing at all, or that can be directed by the web application/web server to not perform MIME-sniffing.</p>
+ </td>
+	</tr>
+</table>
+
+											</details></li>
+									</ol>
+								</li>
+								
+							</ol>
+						</li>
+						
+					</ol>
+				</li>
+				
+				
+				  
+				 
+				
+				
+				
+				
+				
+				
+				<li id="alerts--risk-0-confidence-1">
+					<h3>
+						<span>Risk</span>=<span
+							class="risk-level">Informativo</span>, <span>Confidence</span>=<span
+							class="confidence-level">Baixo</span> <span>(1)</span>
+					</h3>
+					<ol>
+						
+						<li class="alerts--site-li">
+							<h4>
+								<span class="site">https://localhost:53031</span> <span>(1)</span>
+							</h4>
+							<ol>
+								
+								<li>
+									<h5>
+										<a
+											href="#alert-type-2">Re-examine Cache-control Directives</a> <span>(1)</span>
+									</h5>
+									<ol>
+										<li><details>
+												<summary>
+													<span class="request-method-n-url">GET https://localhost:53031/api/Notificacao</span>
+												</summary>
+												
+<table class="alerts-table">
+	<tr>
+		<th scope="row">Alert tags</th>
+		<td>
+			<ul class="alert-tags-list">
+				<li>
+					<span><a href="https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/04-Authentication_Testing/06-Testing_for_Browser_Cache_Weaknesses">WSTG-v42-ATHN-06</a></span> 
+				</li>
+				<li>
+					<span><a href="https://cwe.mitre.org/data/definitions/525.html">CWE-525</a></span> 
+				</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">Alert description</th>
+		<td> 
+<p>The cache-control header has not been set properly or is missing, allowing the browser and proxies to cache content. For static assets like css, js, or image files this might be intended, however, the resources should be reviewed to ensure that no sensitive content will be cached.</p>
+ </td>
+	</tr>
+	
+	<tr>
+		<th scope="row">Request</th>
+		<td><details open="open">
+				<summary>Request line and header section (247 bytes)</summary>
+				
+				<pre><code>GET https://localhost:53031/api/Notificacao HTTP/1.1
+host: localhost:53031
+user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+pragma: no-cache
+cache-control: no-cache
+
+</code></pre>
+				
+				
+			</details> <details class="request-body" open="open">
+				<summary>Request body (0 bytes)</summary>
+				
+				<pre><code></code></pre>
+				
+				
+			</details></td>
+	</tr>
+	<tr>
+		<th scope="row">Response</th>
+		<td><details open="open">
+				<summary>Status line and header section (141 bytes)</summary>
+				
+				<pre><code>HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Sun, 09 Feb 2025 21:10:12 GMT
+Server: Kestrel
+content-length: 859
+
+</code></pre>
+				
+				
+			</details> <details class="response-body" open="open">
+				<summary>Response body (859 bytes)</summary>
+				
+				<pre><code>{&quot;content&quot;:[{&quot;idNotificacao&quot;:&quot;b2c4c46c-ad31-49c8-b7ec-5b8bf8400acd&quot;,&quot;data&quot;:&quot;0001-01-01T00:00:00Z&quot;,&quot;mensagem&quot;:&quot;Arquivo recebido com sucesso!&quot;,&quot;usuario&quot;:&quot;fernando@umavida.com&quot;},{&quot;idNotificacao&quot;:&quot;c4dedcaf-e425-438d-a2da-4c3fad3e418a&quot;,&quot;data&quot;:&quot;0001-01-01T00:00:00Z&quot;,&quot;mensagem&quot;:&quot;Arquivo recebido com sucesso!&quot;,&quot;usuario&quot;:&quot;fernando@umavida.com&quot;},{&quot;idNotificacao&quot;:&quot;34a91d49-0ca7-497b-981b-b62fd3cf4f86&quot;,&quot;data&quot;:&quot;0001-01-01T00:00:00Z&quot;,&quot;mensagem&quot;:&quot;Arquivo recebido com sucesso!&quot;,&quot;usuario&quot;:&quot;fernando@umavida.com&quot;},{&quot;idNotificacao&quot;:&quot;e0243fec-ff92-483b-a95d-56805d1f5f67&quot;,&quot;data&quot;:&quot;0001-01-01T00:00:00Z&quot;,&quot;mensagem&quot;:&quot;Arquivo recebido com sucesso!&quot;,&quot;usuario&quot;:&quot;fernando@umavida.com&quot;},{&quot;idNotificacao&quot;:&quot;3fa85f64-5717-4562-b3fc-2c963f66afa6&quot;,&quot;data&quot;:&quot;2025-02-09T03:48:19.402Z&quot;,&quot;mensagem&quot;:&quot;string&quot;,&quot;usuario&quot;:&quot;string&quot;}],&quot;totalElements&quot;:5,&quot;take&quot;:10,&quot;numberOfElements&quot;:5,&quot;totalPages&quot;:1}</code></pre>
+				
+				
+			</details></td>
+	</tr>
+	<tr>
+		<th scope="row">Parameter</th>
+		<td><pre><code>cache-control</code></pre></td>
+	</tr>
+	
+	
+	<tr>
+		<th scope="row">Solution</th>
+		<td> 
+<p>For secure content, ensure the cache-control HTTP header is set with &quot;no-cache, no-store, must-revalidate&quot;. If an asset should be cached consider setting the directives &quot;public, max-age, immutable&quot;.</p>
+ </td>
+	</tr>
+</table>
+
+											</details></li>
+									</ol>
+								</li>
+								
+							</ol>
+						</li>
+						
+					</ol>
+				</li>
+				  
+			</ol>
+		</section>
+
+		<section id="appendix" class="appendix">
+			<h2>Appendix</h2>
+
+			<section id="alert-types" class="alert-types">
+				<h3>Alert types</h3>
+				<p class="alert-types-intro">This section contains additional information on the types of alerts in the report.</p>
+				<ol>
+					<li
+						id="alert-type-0">
+						<h4>Strict-Transport-Security Header Not Set</h4>
+						<table class="alert-types-table">
+							<tr>
+								<th scope="row">Source</th>
+								<td>
+									
+									   <span>raised by a passive scanner</span> <span>(<a
+										href="https://www.zaproxy.org/docs/alerts/10035/">Strict-Transport-Security Header</a>)
+									</span>   
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">CWE ID</th>
+								<td><a
+									href="https://cwe.mitre.org/data/definitions/319.html">319</a></td>
+							</tr>
+							<tr>
+								<th scope="row">WASC ID</th>
+								<td>15</td>
+							</tr>
+							<tr>
+								<th scope="row">Reference</th>
+								<td>
+									<ol>
+										<li><a
+											href="https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html">https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html</a></li>
+										<li><a
+											href="https://owasp.org/www-community/Security_Headers">https://owasp.org/www-community/Security_Headers</a></li>
+										<li><a
+											href="https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security">https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security</a></li>
+										<li><a
+											href="https://caniuse.com/stricttransportsecurity">https://caniuse.com/stricttransportsecurity</a></li>
+										<li><a
+											href="https://datatracker.ietf.org/doc/html/rfc6797">https://datatracker.ietf.org/doc/html/rfc6797</a></li>
+									</ol>
+								</td>
+							</tr>
+						</table>
+					</li>
+					<li
+						id="alert-type-1">
+						<h4>X-Content-Type-Options Header Missing</h4>
+						<table class="alert-types-table">
+							<tr>
+								<th scope="row">Source</th>
+								<td>
+									
+									   <span>raised by a passive scanner</span> <span>(<a
+										href="https://www.zaproxy.org/docs/alerts/10021/">X-Content-Type-Options Header Missing</a>)
+									</span>   
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">CWE ID</th>
+								<td><a
+									href="https://cwe.mitre.org/data/definitions/693.html">693</a></td>
+							</tr>
+							<tr>
+								<th scope="row">WASC ID</th>
+								<td>15</td>
+							</tr>
+							<tr>
+								<th scope="row">Reference</th>
+								<td>
+									<ol>
+										<li><a
+											href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/compatibility/gg622941(v=vs.85)">https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/compatibility/gg622941(v=vs.85)</a></li>
+										<li><a
+											href="https://owasp.org/www-community/Security_Headers">https://owasp.org/www-community/Security_Headers</a></li>
+									</ol>
+								</td>
+							</tr>
+						</table>
+					</li>
+					<li
+						id="alert-type-2">
+						<h4>Re-examine Cache-control Directives</h4>
+						<table class="alert-types-table">
+							<tr>
+								<th scope="row">Source</th>
+								<td>
+									
+									   <span>raised by a passive scanner</span> <span>(<a
+										href="https://www.zaproxy.org/docs/alerts/10015/">Re-examine Cache-control Directives</a>)
+									</span>   
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">CWE ID</th>
+								<td><a
+									href="https://cwe.mitre.org/data/definitions/525.html">525</a></td>
+							</tr>
+							<tr>
+								<th scope="row">WASC ID</th>
+								<td>13</td>
+							</tr>
+							<tr>
+								<th scope="row">Reference</th>
+								<td>
+									<ol>
+										<li><a
+											href="https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#web-content-caching">https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#web-content-caching</a></li>
+										<li><a
+											href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control</a></li>
+										<li><a
+											href="https://grayduck.mn/2021/09/13/cache-control-recommendations/">https://grayduck.mn/2021/09/13/cache-control-recommendations/</a></li>
+									</ol>
+								</td>
+							</tr>
+						</table>
+					</li>
+				</ol>
+			</section>
+		</section>
+		 
+	</main>
+</body>
+</html>
+
+
+

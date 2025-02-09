@@ -1,16 +1,16 @@
-﻿using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Interfaces;
-using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Models;
+﻿using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Application.UseCases.ProcessamentoImagem.Commands;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain;
+using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Entities;
+using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Extensions;
+using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Interfaces;
+using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Models;
+using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Services;
+using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Validator;
 using FluentValidation;
+using Newtonsoft.Json;
 using NSubstitute;
 using System.Linq.Expressions;
 using TestProject.MockData;
-using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Entities;
-using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Validator;
-using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Services;
-using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Application.UseCases.ProcessamentoImagem.Commands;
-using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Extensions;
-using Newtonsoft.Json;
 
 namespace TestProject.UnitTest.Domain
 {

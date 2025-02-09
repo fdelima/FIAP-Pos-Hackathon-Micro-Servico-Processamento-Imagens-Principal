@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Azure.Storage.Queues;
-using Azure.Storage.Queues.Models;
+﻿using Azure.Storage.Queues;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Interfaces;
-using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Models;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Infra.Gateways;
-using Microsoft.Azure.Amqp.Framing;
 using Microsoft.Extensions.Configuration;
 using TestProject.Infra;
-using Xunit;
 
 namespace TestProject.IntegrationTest.External
 {

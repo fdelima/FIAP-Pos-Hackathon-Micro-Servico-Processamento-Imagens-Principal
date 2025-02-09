@@ -20,28 +20,41 @@ Os investidores gostaram tanto do projeto, que querem investir em uma versão on
 Atender à demanda dos investidores por uma solução mais completa, que permita o envio de vídeos e o download de imagens processadas, expandindo as funcionalidades do projeto existente.
 
 ### Requisitos técnicos:
- - O sistema deve persistir os dados;
+ - #### O sistema deve persistir os dados;
     > * Utilizamos NoSql em nosso microserviço de processamento de imagem principal.
 >
- - O sistema deve estar em uma arquitetura que o permita ser escalado;
+ - #### O sistema deve estar em uma arquitetura que o permita ser escalado;
      > * Utilizamos kubernetes.
 >
- - O projeto deve ser versionado no Github;
+ - #### O projeto deve ser versionado no Github;
      > *  [Microserviço Principal](https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal)
     > *  [Microserviço de produção](https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Producao)
 >
- - O projeto deve ter testes que garantam a sua qualidade;
-    > * Realizado teste de componente em BDD.
-    > * Realizado teste de integração.
-    > * Realizado teste unitários.
+ - #### O projeto deve ter testes que garantam a sua qualidade;
+    > * **Teste realizados**
     ![Teste realizados](/Documentacao/principal-tests.png)     
-    > * Code coverage
-    ![Code coverage 81%](/Documentacao/code-coverage-principal.png)
+    > Realizado teste de componente em BDD.  
+    > Realizado teste de integração.  
+    > Realizado teste unitários.  
+    >    
+    > * **Code coverage**
+    ![Code coverage 81%](/Documentacao/code-coverage-principal.png)  
     [Veja aqui detalhes do Xunit Code Coverage](https://html-preview.github.io/?url=https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal/blob/develop/TestProject/CodeCoverage/Report/index.html)
+    >    
+    > * **DAST Vulnerability test**
+    ![DAST Vulnerability test](/Documentacao/ZAP-DAST-Principal.png)  
+    > [Veja aqui detalhes do DAST Vulnerability test](https://html-preview.github.io/?url=https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal/blob/develop/TestProject/ZAP-DAST/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal-2025-02-09-ZAP-Report-.html)
  >
  - CI/CD da aplicacao
-    > * [Pipeline microserviço processamento de imagem principal](https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal/actions/workflows/dotnet.yml)
-    > * [Pipeline microserviço processamento de imagem produção](https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Producao/actions/workflows/dotnet.yml)
+    - Microserviço processamento de imagem principal
+        > * [Pipeline workflow](https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal/actions/runs/13229399793/workflow)
+        > * [Pipeline actions](https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal/actions)
+        > * [Pipeline execução](https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal/actions/runs/13229399793/job/36924433052)
+    
+    - Microserviço processamento de imagem produção    
+        > * [Pipeline workflow](https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Producao/actions/runs/13215807809/workflow)
+        > * [Pipeline actions](https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Producao/actions)
+        > * [Pipeline execução](??)
 # Entregáveis:
  - Documentação da arquitetura proposta para o projeto;
    > *  ![Arquitetura proposta](/Documentacao/FIAP-Pos-Tech-Hackathon-Arquitetura.drawio.svg)

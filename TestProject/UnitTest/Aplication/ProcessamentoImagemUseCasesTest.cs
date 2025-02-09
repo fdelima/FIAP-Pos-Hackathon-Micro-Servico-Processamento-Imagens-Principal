@@ -32,7 +32,7 @@ namespace TestProject.UnitTest.Aplication
         {
             ///Arrange
             var processamentoImagem = new ProcessamentoImagem
-            { 
+            {
                 Data = data,
                 Usuario = usuario,
                 DataEnvio = dataEnvio,

@@ -1,17 +1,16 @@
-﻿using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Interfaces;
-using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Models;
+﻿using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Application.Controllers;
+using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Application.UseCases.ProcessamentoImagem.Commands;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain;
+using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Entities;
+using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Extensions;
+using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Interfaces;
+using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Models;
+using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Validator;
 using FluentValidation;
 using MediatR;
 using NSubstitute;
 using System.Linq.Expressions;
 using TestProject.MockData;
-using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Entities;
-using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Validator;
-using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Application.Controllers;
-using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Application.UseCases.ProcessamentoImagem.Commands;
-using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Extensions;
-using System.ComponentModel.DataAnnotations;
 
 namespace TestProject.UnitTest.Aplication
 {
@@ -298,7 +297,7 @@ namespace TestProject.UnitTest.Aplication
         {
             ///Arrange
             var aplicationController = new ProcessamentoImagemController(_mediator, _validator, _storageService, _uploadValidator);
-           
+
             //Mockando retorno do mediator.
             _mediator.Send(Arg.Any<ProcessamentoImagemSendMessageToQueueCommand>())
                 .Returns(Task.FromResult(ModelResultFactory.SucessResult()));
@@ -315,7 +314,7 @@ namespace TestProject.UnitTest.Aplication
         {
             ///Arrange
             var aplicationController = new ProcessamentoImagemController(_mediator, _validator, _storageService, _uploadValidator);
-          
+
             //Mockando retorno do mediator.
             _mediator.Send(Arg.Any<ProcessamentoImagemReceiverMessageInQueueCommand>())
                 .Returns(Task.FromResult(ModelResultFactory.SucessResult()));
