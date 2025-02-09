@@ -35,6 +35,11 @@ namespace TestProject.Infra
 
         public FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Infra.Context GetDbContext()
         {
+            while (string.IsNullOrWhiteSpace(_port))
+            {
+                Thread.Sleep(5000);
+            }
+
             string connectionString = $"mongodb://localhost:{_port}";
 
             var options = new DbContextOptionsBuilder<FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Infra.Context>()
