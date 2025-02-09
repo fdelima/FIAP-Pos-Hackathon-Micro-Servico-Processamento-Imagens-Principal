@@ -33,7 +33,7 @@ namespace TestProject.ComponenteTest
             public bool IsValid { get; set; }
         }
 
-        [Given(@"Recebendo um notificacao na lanchonete vamos preparar o notificacao")]
+        [Given(@"Recebendo uma notificacao do processamento de imagem vamos preparar o notificacao")]
         public void PrepararNotificacao()
         {
             _notificacao = new Notificacao
@@ -50,7 +50,7 @@ namespace TestProject.ComponenteTest
 
             var client = _apiTest.GetClient();
             HttpResponseMessage response = await client.PostAsJsonAsync(
-                "api/producao/notificacao", _notificacao);
+                "api/notificacao", _notificacao);
 
             var responseContent = await response.Content.ReadAsStringAsync();
             var actualResult = JsonConvert.DeserializeObject<ActionResult>(responseContent);
@@ -71,7 +71,7 @@ namespace TestProject.ComponenteTest
 
             var client = _apiTest.GetClient();
             HttpResponseMessage response = await client.GetAsync(
-                $"api/producao/notificacao/{_notificacao.IdNotificacao}");
+                $"api/notificacao/{_notificacao.IdNotificacao}");
 
             var responseContent = await response.Content.ReadAsStringAsync();
             var actualResult = JsonConvert.DeserializeObject<ActionResult>(responseContent);
@@ -89,7 +89,7 @@ namespace TestProject.ComponenteTest
 
             var client = _apiTest.GetClient();
             HttpResponseMessage response = await client.PutAsJsonAsync(
-                $"api/producao/notificacao/{_notificacao.IdNotificacao}", _notificacao);
+                $"api/notificacao/{_notificacao.IdNotificacao}", _notificacao);
 
             var responseContent = await response.Content.ReadAsStringAsync();
             var actualResult = JsonConvert.DeserializeObject<ActionResult>(responseContent);
@@ -105,7 +105,7 @@ namespace TestProject.ComponenteTest
         {
             var client = _apiTest.GetClient();
             HttpResponseMessage response = await client.PostAsJsonAsync(
-                $"api/producao/notificacao/consult", new PagingQueryParam<Notificacao> { ObjFilter = _notificacao });
+                $"api/notificacao/consult", new PagingQueryParam<Notificacao> { ObjFilter = _notificacao });
 
             var responseContent = await response.Content.ReadAsStringAsync();
             dynamic actualResult = JsonConvert.DeserializeObject(responseContent);
@@ -120,7 +120,7 @@ namespace TestProject.ComponenteTest
 
             var client = _apiTest.GetClient();
             HttpResponseMessage response = await client.DeleteAsync(
-                $"api/producao/notificacao/{_notificacao.IdNotificacao}");
+                $"api/notificacao/{_notificacao.IdNotificacao}");
 
             var responseContent = await response.Content.ReadAsStringAsync();
             var actualResult = JsonConvert.DeserializeObject<ActionResult>(responseContent);

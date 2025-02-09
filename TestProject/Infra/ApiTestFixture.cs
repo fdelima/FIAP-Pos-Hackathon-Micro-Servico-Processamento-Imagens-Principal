@@ -8,7 +8,7 @@ namespace TestProject.Infra
         const string network = "network-processamento-imagens-principal-test";
 
         //api
-        private const string ImageName = "fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal-gurpo-71-api:fase5";
+        private const string ImageName = "fdelima/fiap-pos-hackathon-micro-servico-processamento-imagens-principal-gurpo-71-api:fase5";
         private const string DatabaseContainerName = "api-processamento-imagens-principal-test";
         private const string DataBaseName = "hackathon-microservico-processamento-imagens-principal-grupo-71";
         private HttpClient _client;

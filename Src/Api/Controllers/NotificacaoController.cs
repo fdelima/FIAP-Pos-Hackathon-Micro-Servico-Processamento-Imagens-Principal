@@ -12,7 +12,7 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Api.C
     /// <summary>
     /// Controller das Notificações cadastrados
     /// </summary>
-    [Route("api/producao/[Controller]")]
+    [Route("api/[Controller]")]
     public class NotificacaoController : ApiController
     {
         private readonly IController<Notificacao> _controller;

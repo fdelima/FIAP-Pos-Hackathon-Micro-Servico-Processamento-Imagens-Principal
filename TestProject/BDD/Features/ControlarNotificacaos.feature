@@ -1,5 +1,5 @@
 Feature: ControlarNotificacaos
-	Para controlar os notificacaos da lanchonete
+	Para controlar os notificacoes do processamento de imagem
 	Eu preciso das seguindes funcionalidades
 	Adicionar um notificacao
 	Alterar um notificacao
@@ -7,7 +7,7 @@ Feature: ControlarNotificacaos
 	Deletar um notificacao
 
 Scenario: Controlar notificacaos
-	Given Recebendo um notificacao na lanchonete vamos preparar o notificacao
+	Given Recebendo uma notificacao do processamento de imagem vamos preparar o notificacao
 	And Adicionar o notificacao
 	And Encontrar o notificacao
 	And Alterar o notificacao

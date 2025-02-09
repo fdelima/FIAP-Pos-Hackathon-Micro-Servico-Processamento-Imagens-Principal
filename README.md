@@ -19,6 +19,23 @@ Os investidores gostaram tanto do projeto, que querem investir em uma versão on
 
 Atender à demanda dos investidores por uma solução mais completa, que permita o envio de vídeos e o download de imagens processadas, expandindo as funcionalidades do projeto existente.
 
+### Requisitos técnicos:
+ - O sistema deve persistir os dados;
+    > * Utilizamos NoSql em nosso microserviço de processamento de imagem principal.
+>
+ - O sistema deve estar em uma arquitetura que o permita ser escalado;
+     > * Utilizamos kubernetes.
+>
+ - O projeto deve ser versionado no Github;
+     > *  [Microserviço Principal](https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal)
+    > *  [Microserviço de produção](https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Producao)
+>
+ - O projeto deve ter testes que garantam a sua qualidade;
+    > * Colocar aqui evidencia de testes.
+ >
+ - CI/CD da aplicacao
+    > * [Pipeline microserviço processamento de imagem principal](https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal/actions/workflows/dotnet.yml)
+    > * [Pipeline microserviço processamento de imagem produção](https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Producao/actions/workflows/dotnet.yml)
 # Entregáveis:
  - Documentação da arquitetura proposta para o projeto;
    > *  ![Arquitetura proposta](/Documentacao/FIAP-Pos-Tech-Hackathon-Arquitetura.drawio.svg)
