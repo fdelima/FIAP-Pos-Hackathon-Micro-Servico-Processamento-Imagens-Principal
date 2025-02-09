@@ -18,7 +18,7 @@
            
             _apiTest = new ApiTestFixture();
 
-            Thread.Sleep(30000);
+            Thread.Sleep(60000);
         }
 
         public void Dispose()
