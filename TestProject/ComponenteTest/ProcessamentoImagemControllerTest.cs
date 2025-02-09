@@ -74,7 +74,7 @@ namespace TestProject.ComponenteTest
 
             var responseContent = await response.Content.ReadAsStringAsync();
             var actualResult = JsonConvert.DeserializeObject<ActionResult>(responseContent);
-
+            Console.WriteLine(responseContent);
             _ProcessamentoImagem = actualResult.Model;
 
             Assert.Equal(expectedResult.IsValid, actualResult.IsValid);

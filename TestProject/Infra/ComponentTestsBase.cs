@@ -19,7 +19,7 @@
             _mongoTestFixture = new MongoTestFixture(
                 databaseContainerName: "mongodb-processamento-imagens-principal-component-test", port: "27021");
             
-            Thread.Sleep(30000);
+            Thread.Sleep(15000);
 
         }
 
