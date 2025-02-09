@@ -43,10 +43,9 @@
 	  <None Update="BDD\Features\ControlarProcessamentoImagens.feature">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="CodeCoverage\History\" />
+	  <None Update="video_test.mp4">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 </Project>

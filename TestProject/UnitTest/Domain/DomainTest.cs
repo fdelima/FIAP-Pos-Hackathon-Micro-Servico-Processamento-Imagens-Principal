@@ -3,6 +3,9 @@ using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.En
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Extensions;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Messages;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Internal;
+using System.Text;
 
 namespace TestProject.UnitTest.Domain
 {
@@ -83,6 +86,77 @@ namespace TestProject.UnitTest.Domain
 
             //Assert
             Assert.Contains(msg, resut.ListErrors());
+        }
+
+        [Fact]
+        public void ProcessamentoImagemProcessModelTest()
+        {
+            //Arrange
+            Guid idProcessamentoImagem = Guid.NewGuid();
+            string usuario = "usuario";
+            DateTime dataInicioProcessamento = DateTime.Now;
+            string nomeArquivo = "NomeArquivo";
+            int tamanhoArquivo = 0;
+            string nomeArquivoZipDownload = "NomeArquivoZipDownload.zip";
+
+            //Act
+            var resut = new ProcessamentoImagemProcessModel
+            {
+                IdProcessamentoImagem = idProcessamentoImagem,
+                Usuario = usuario,
+                DataFimProcessamento = dataInicioProcessamento,
+                NomeArquivo = nomeArquivo,
+                TamanhoArquivo = tamanhoArquivo,
+                NomeArquivoZipDownload = nomeArquivoZipDownload
+            };
+
+            //Assert
+            Assert.NotNull(resut);
+        }
+
+        [Fact]
+        public void ProcessamentoImagemSendQueueModelTest()
+        {
+            //Arrange
+            Guid idProcessamentoImagem = Guid.NewGuid();
+            string usuario = "usuario";
+            DateTime dataEnviadoFila = DateTime.Now;
+            string nomeArquivo = "NomeArquivo";
+            int tamanhoArquivo = 0;
+            string nomeArquivoZipDownload = "NomeArquivoZipDownload.zip";
+
+            //Act
+            var resut = new ProcessamentoImagemSendQueueModel
+            {
+                IdProcessamentoImagem = idProcessamentoImagem,
+                Usuario = usuario,
+                DataEnviadoFila = dataEnviadoFila,
+                NomeArquivo = nomeArquivo,
+                TamanhoArquivo = tamanhoArquivo,
+                NomeArquivoZipDownload = nomeArquivoZipDownload
+            };
+
+            //Assert
+            Assert.NotNull(resut);
+        }
+        [Fact]
+        public void ProcessamentoImagemUploadModelTest()
+        {
+            //Arrange
+            string usuario = "usuario";
+            DateTime data = DateTime.Now;
+            IFormFile formFile = new FormFile(new MemoryStream(Encoding.UTF8.GetBytes("conteudo")), 0, Encoding.UTF8.GetBytes("conteudo").Length, "FormFile", "arquivo.txt");
+
+            //Act
+            var resut = new ProcessamentoImagemUploadModel
+            {
+                Usuario = usuario,
+                Data = data,
+                FormFile = formFile,
+            };
+
+            //Assert
+            Assert.NotNull(resut);
         }
     }
 }

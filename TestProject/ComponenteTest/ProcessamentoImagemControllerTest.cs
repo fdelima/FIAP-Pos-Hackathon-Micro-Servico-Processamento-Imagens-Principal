@@ -5,6 +5,11 @@ using TestProject.Infra;
 using Xunit.Gherkin.Quick;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Entities;
 using Newtonsoft.Json;
+using NSubstitute;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Internal;
+using System.Text;
+using System.Net.Mime;
 
 namespace TestProject.ComponenteTest
 {
@@ -14,6 +19,7 @@ namespace TestProject.ComponenteTest
         private readonly ApiTestFixture _apiTest;
         private ModelResult expectedResult;
         ProcessamentoImagem _ProcessamentoImagem;
+        ProcessamentoImagemUploadModel _ProcessamentoImagemUpload;
 
         /// <summary>
         /// Construtor da classe de teste.
@@ -33,6 +39,8 @@ namespace TestProject.ComponenteTest
         [Given(@"Recebendo um ProcessamentoImagem")]
         public void PrepararProcessamentoImagem()
         {
+           
+
             _ProcessamentoImagem = new ProcessamentoImagem
             {
                 Data = DateTime.Now,
@@ -48,10 +56,21 @@ namespace TestProject.ComponenteTest
         public async Task AdicionarProcessamentoImagem()
         {
             expectedResult = ModelResultFactory.InsertSucessResult<ProcessamentoImagem>(_ProcessamentoImagem);
-
+            IFormFile formFile;
+            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes("conteudo")))
+            {
+                formFile = new FormFile(stream, 0, stream.Length, "FormFile", "arquivo.txt")
+                {
+                    Headers = new HeaderDictionary(),
+                    ContentType = "text/plain"
+                };
+            }
             var client = _apiTest.GetClient();
-            HttpResponseMessage response = await client.PostAsJsonAsync(
-                "api/cadastro/ProcessamentoImagem", _ProcessamentoImagem);
+            var conteudo = new MultipartFormDataContent();
+            conteudo.Add(new ByteArrayContent(File.ReadAllBytes("video_test.mp4")), "FormFile", "video_test.mp4");
+
+            HttpResponseMessage response = await client.PostAsync(
+                "api/ProcessamentoImagem?Data=2025-02-09T05%3A15%3A40.964Z&Usuario=Lima", conteudo);
 
             var responseContent = await response.Content.ReadAsStringAsync();
             var actualResult = JsonConvert.DeserializeObject<ActionResult>(responseContent);
@@ -72,7 +91,7 @@ namespace TestProject.ComponenteTest
 
             var client = _apiTest.GetClient();
             HttpResponseMessage response = await client.GetAsync(
-                $"api/cadastro/ProcessamentoImagem/{_ProcessamentoImagem.IdProcessamentoImagem}");
+                $"api/ProcessamentoImagem/{_ProcessamentoImagem.IdProcessamentoImagem}");
 
             var responseContent = await response.Content.ReadAsStringAsync();
             var actualResult = JsonConvert.DeserializeObject<ActionResult>(responseContent);
@@ -90,7 +109,7 @@ namespace TestProject.ComponenteTest
 
             var client = _apiTest.GetClient();
             HttpResponseMessage response = await client.PutAsJsonAsync(
-                $"api/cadastro/ProcessamentoImagem/{_ProcessamentoImagem.IdProcessamentoImagem}", _ProcessamentoImagem);
+                $"api/ProcessamentoImagem/{_ProcessamentoImagem.IdProcessamentoImagem}", _ProcessamentoImagem);
 
             var responseContent = await response.Content.ReadAsStringAsync();
             var actualResult = JsonConvert.DeserializeObject<ActionResult>(responseContent);
@@ -106,7 +125,7 @@ namespace TestProject.ComponenteTest
         {
             var client = _apiTest.GetClient();
             HttpResponseMessage response = await client.PostAsJsonAsync(
-                $"api/cadastro/ProcessamentoImagem/consult", new PagingQueryParam<ProcessamentoImagem> { ObjFilter = _ProcessamentoImagem });
+                $"api/ProcessamentoImagem/consult", new PagingQueryParam<ProcessamentoImagem> { ObjFilter = _ProcessamentoImagem });
 
             var responseContent = await response.Content.ReadAsStringAsync();
             dynamic actualResult = JsonConvert.DeserializeObject(responseContent);
@@ -121,7 +140,7 @@ namespace TestProject.ComponenteTest
 
             var client = _apiTest.GetClient();
             HttpResponseMessage response = await client.DeleteAsync(
-                $"api/cadastro/ProcessamentoImagem/{_ProcessamentoImagem.IdProcessamentoImagem}");
+                $"api/ProcessamentoImagem/{_ProcessamentoImagem.IdProcessamentoImagem}");
 
             var responseContent = await response.Content.ReadAsStringAsync();
             var actualResult = JsonConvert.DeserializeObject<ActionResult>(responseContent);

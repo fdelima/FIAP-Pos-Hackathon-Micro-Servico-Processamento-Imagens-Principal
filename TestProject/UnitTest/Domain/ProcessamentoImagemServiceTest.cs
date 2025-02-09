@@ -10,6 +10,7 @@ using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Va
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Services;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Application.UseCases.ProcessamentoImagem.Commands;
 using FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domain.Extensions;
+using Newtonsoft.Json;
 
 namespace TestProject.UnitTest.Domain
 {
@@ -314,6 +315,53 @@ namespace TestProject.UnitTest.Domain
 
             //Assert
             Assert.True(result.Content.Any());
+        }
+
+        [Fact]
+        public async Task SendMessageToQueueAsyncTest()
+        {
+            ///Arrange
+            var domainService = new ProcessamentoImagemService(_gatewayProcessamentoImagemMock, _validator, _notificacaoGatewayMock, _messagerService, _storageService);
+
+            //Mockando retorno do metodo interno do GetItemsAsync
+            _gatewayProcessamentoImagemMock.GetItemsAsync(Arg.Any<Expression<Func<ProcessamentoImagem, bool>>>())
+                .Returns(new ValueTask<PagingQueryResult<ProcessamentoImagem>>(new PagingQueryResult<ProcessamentoImagem>(new List<ProcessamentoImagem>())));
+
+
+            //Act
+            var result = await domainService.SendMessageToQueueAsync();
+
+            //Assert
+            Assert.True(result.IsValid);
+        }
+
+        [Fact]
+        public async Task ReceiverMessageInQueueAsyncTest()
+        {
+            ///Arrange
+            var domainService = new ProcessamentoImagemService(_gatewayProcessamentoImagemMock, _validator, _notificacaoGatewayMock, _messagerService, _storageService);
+
+            var msg = new ProcessamentoImagemProcessModel
+            {
+                IdProcessamentoImagem = Guid.NewGuid(),
+                Usuario = "usuario",
+                DataFimProcessamento = DateTime.Now,
+                NomeArquivo = "nomeArquivo",
+                TamanhoArquivo = 0,
+                NomeArquivoZipDownload = "nomeArquivoZipDownload.zip"
+            };
+
+            //Mockando retorno do metodo interno do ReceiveMessageAsync
+            _messagerService.ReceiveMessageAsync()
+                .Returns(new MessageModel { MessageId = Guid.NewGuid().ToString(), MessageText = JsonConvert.SerializeObject(msg), PopReceipt = "PopReceipt" });
+
+            _gatewayProcessamentoImagemMock.FindByIdAsync(msg.IdProcessamentoImagem)
+                .Returns(new ProcessamentoImagem { NomeArquivo = "nomearquivo", NomeArquivoZipDownload = "zip.zip", Usuario = "usr" });
+            //Act
+            var result = await domainService.ReceiverMessageInQueueAsync();
+
+            //Assert
+            Assert.True(result.IsValid);
         }
 
         #region [ Xunit MemberData ]

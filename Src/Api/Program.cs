@@ -18,7 +18,7 @@ public class Program
         builder.Services.AddControllers();
         builder.Services.AddHostedService(sp =>
         {
-            return new SendQueueWorker(sp);
+            return new QueueWorker(sp);
         }); // Adicione o seu Worker Service
 
         builder.Services.ConfigureModelValidations();

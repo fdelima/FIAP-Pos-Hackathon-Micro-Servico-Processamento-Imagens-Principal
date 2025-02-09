@@ -24,7 +24,7 @@ namespace TestProject.UnitTest.Aplication
         private readonly IStorageService _storageService;
         private readonly IValidator<ProcessamentoImagem> _validator;
         private readonly IValidator<ProcessamentoImagemUploadModel> _uploadValidator;
-        
+
 
         /// <summary>
         /// Construtor da classe de teste.
@@ -291,6 +291,40 @@ namespace TestProject.UnitTest.Aplication
                 //Assert
                 Assert.True(ex.GetType().Equals(typeof(InvalidOperationException)));
             }
+        }
+
+        [Fact]
+        public async Task SendMessageToQueueAsync()
+        {
+            ///Arrange
+            var aplicationController = new ProcessamentoImagemController(_mediator, _validator, _storageService, _uploadValidator);
+           
+            //Mockando retorno do mediator.
+            _mediator.Send(Arg.Any<ProcessamentoImagemSendMessageToQueueCommand>())
+                .Returns(Task.FromResult(ModelResultFactory.SucessResult()));
+
+            //Act
+            var result = await aplicationController.SendMessageToQueueAsync();
+
+            //Assert
+            Assert.True(result.IsValid);
+        }
+
+        [Fact]
+        public async Task ReceiverMessageInQueueAsync()
+        {
+            ///Arrange
+            var aplicationController = new ProcessamentoImagemController(_mediator, _validator, _storageService, _uploadValidator);
+          
+            //Mockando retorno do mediator.
+            _mediator.Send(Arg.Any<ProcessamentoImagemReceiverMessageInQueueCommand>())
+                .Returns(Task.FromResult(ModelResultFactory.SucessResult()));
+
+            //Act
+            var result = await aplicationController.ReceiverMessageInQueueAsync();
+
+            //Assert
+            Assert.True(result.IsValid);
         }
 
         #region [ Xunit MemberData ]

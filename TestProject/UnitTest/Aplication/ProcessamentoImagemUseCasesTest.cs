@@ -13,14 +13,14 @@ namespace TestProject.UnitTest.Aplication
 {
     public partial class ProcessamentoImagemUseCasesTest
     {
-        private readonly IService<ProcessamentoImagem> _service;
+        private readonly IProcessamentoImagemService _service;
 
         /// <summary>
         /// Construtor da classe de teste.
         /// </summary>
         public ProcessamentoImagemUseCasesTest()
         {
-            _service = Substitute.For<IService<ProcessamentoImagem>>();
+            _service = Substitute.For<IProcessamentoImagemService>();
         }
 
         /// <summary>
@@ -268,6 +268,43 @@ namespace TestProject.UnitTest.Aplication
 
             //Assert
             Assert.True(result.Content.Any());
+        }
+
+        [Fact]
+        public async Task SendMessageToQueueAsync()
+        {
+            //Arrange
+            var command = new ProcessamentoImagemSendMessageToQueueCommand();
+
+            //Mockando retorno do serviço de domínio.
+            _service.SendMessageToQueueAsync()
+                .Returns(Task.FromResult(ModelResultFactory.SucessResult()));
+
+            //Act
+            var handler = new ProcessamentoImagemSendMessageToQueueHandler(_service);
+            var result = await handler.Handle(command, CancellationToken.None);
+
+            //Assert
+            Assert.True(result.IsValid);
+        }
+
+
+        [Fact]
+        public async Task ReceiverMessageInQueueAsync()
+        {
+            //Arrange
+            var command = new ProcessamentoImagemReceiverMessageInQueueCommand();
+
+            //Mockando retorno do serviço de domínio.
+            _service.ReceiverMessageInQueueAsync()
+                .Returns(Task.FromResult(ModelResultFactory.SucessResult()));
+
+            //Act
+            var handler = new ProcessamentoImagemReceiverMessageInQueueHandler(_service);
+            var result = await handler.Handle(command, CancellationToken.None);
+
+            //Assert
+            Assert.True(result.IsValid);
         }
 
         #region [ Xunit MemberData ]

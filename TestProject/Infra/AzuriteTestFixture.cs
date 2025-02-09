@@ -2,22 +2,20 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TestProject.Infra
 {
-    public class MongoTestFixture : IDisposable
+    public class AzuriteTestFixture : IDisposable
     {
         //mongo
         const string network = "network-processamento-imagens-principal-test";
-        private const string ImageName = "mongo:latest";
-        private const string DataBaseName = "hackathon-microservico-processamento-imagens-principal-grupo-71";
+        private const string ImageName = "mcr.microsoft.com/azure-storage/azurite:latest";
 
         string _port; string _databaseContainerName;
 
-        public MongoTestFixture(string databaseContainerName, string port)
+        public AzuriteTestFixture(string databaseContainerName)
         {
             if (DockerManager.UseDocker())
             {
                 if (!DockerManager.ContainerIsRunning(databaseContainerName))
                 {
-                    _port = port;
                     _databaseContainerName = databaseContainerName;
                     DockerManager.PullImageIfDoesNotExists(ImageName);
                     DockerManager.KillContainer(databaseContainerName);
@@ -27,23 +25,15 @@ namespace TestProject.Infra
 
                     DockerManager.RunContainerIfIsNotRunning(databaseContainerName,
                         $"run --name {databaseContainerName} " +
-                        $"-p {port}:27017 " +
+                        $"-p 10000:10000 " +
+                        $"-p 10001:10001 " +
+                        $"-p 10002:10002 " +
                         $"--network {network} " +
                         $"-d {ImageName}");
 
                     Thread.Sleep(3000);
                 }
             }
-        }
-
-        public FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Infra.Context GetDbContext()
-        {
-            string connectionString = $"mongodb://localhost:{_port}";
-
-            var options = new DbContextOptionsBuilder<FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Infra.Context>()
-                                .UseMongoDB(connectionString, DataBaseName).Options;
-
-            return new FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Infra.Context(options);
         }
 
         public void Dispose()

@@ -31,7 +31,13 @@ Atender à demanda dos investidores por uma solução mais completa, que permita
     > *  [Microserviço de produção](https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Producao)
 >
  - O projeto deve ter testes que garantam a sua qualidade;
-    > * Colocar aqui evidencia de testes.
+    > * Realizado teste de componente em BDD.
+    > * Realizado teste de integração.
+    > * Realizado teste unitários.
+    ![Teste realizados](/Documentacao/principal-tests.png)     
+    > * Code coverage
+    ![Code coverage 81%](/Documentacao/code-coverage-principal.png)
+    [Veja aqui detalhes do Xunit Code Coverage](https://html-preview.github.io/?url=https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal/blob/develop/TestProject/CodeCoverage/Report/index.html)
  >
  - CI/CD da aplicacao
     > * [Pipeline microserviço processamento de imagem principal](https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal/actions/workflows/dotnet.yml)
