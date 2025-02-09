@@ -5,7 +5,6 @@ namespace TestProject.Infra
     public class ApiTestFixture : IDisposable
     {
         const string port = "5000";
-        const string network = "network-processamento-imagens-principal-test";
 
         //api
         private const string ImageName = "fdelima/fiap-pos-hackathon-micro-servico-processamento-imagens-principal-gurpo-71-api:fase5";
@@ -23,13 +22,13 @@ namespace TestProject.Infra
                     DockerManager.KillContainer(DatabaseContainerName);
                     DockerManager.KillVolume(DatabaseContainerName);
 
-                    DockerManager.CreateNetWork(network);
+                    DockerManager.CreateNetWork();
 
                     DockerManager.RunContainerIfIsNotRunning(DatabaseContainerName,
                         $"run --name {DatabaseContainerName} " +
                         $"-e ASPNETCORE_ENVIRONMENT=Test " +
                         $"-p {port}:8080 " +
-                        $"--network {network} " +
+                        $"--network {DockerManager.NETWORK} " +
                         $"-d {ImageName}");
 
                     Thread.Sleep(3000);

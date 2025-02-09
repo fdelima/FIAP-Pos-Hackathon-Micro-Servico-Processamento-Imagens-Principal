@@ -2,9 +2,13 @@ namespace TestProject.Infra
 {
     internal class DockerManager
     {
-        public static void CreateNetWork(string netowrkName)
+        public const string NETWORK = "network-processamento-imagens-principal-test";
+        public static void CreateNetWork()
         {
-            ProcessManager.ExecuteCommand("docker", $"network create {netowrkName}");
+            var networkId = ProcessManager.ExecuteCommand("docker", $"network inspect -f '{{.Id}}' {NETWORK}");
+
+            if (string.IsNullOrEmpty(networkId))
+                ProcessManager.ExecuteCommand("docker", $"network create {NETWORK}");
         }
         public static bool ImageExists(string imageName, string version = "latest")
         {
@@ -18,7 +22,7 @@ namespace TestProject.Infra
 
         public static void PullImageIfDoesNotExists(string imageName, string version = "latest")
         {
-            if (!ImageExists(imageName,version))
+            if (!ImageExists(imageName, version))
                 ProcessManager.ExecuteCommand("docker", $"pull {imageName}:{version}");
         }
 

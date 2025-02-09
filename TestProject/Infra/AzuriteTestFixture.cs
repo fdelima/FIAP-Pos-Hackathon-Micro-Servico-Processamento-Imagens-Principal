@@ -3,9 +3,7 @@ using Microsoft.EntityFrameworkCore;
 namespace TestProject.Infra
 {
     public class AzuriteTestFixture : IDisposable
-    {
-        //mongo
-        const string network = "network-processamento-imagens-principal-test";
+    {                
         private const string ImageName = "mcr.microsoft.com/azure-storage/azurite:latest";
 
         string _port; string _databaseContainerName;
@@ -21,14 +19,14 @@ namespace TestProject.Infra
                     DockerManager.KillContainer(databaseContainerName);
                     DockerManager.KillVolume(databaseContainerName);
 
-                    DockerManager.CreateNetWork(network);
+                    DockerManager.CreateNetWork();
 
                     DockerManager.RunContainerIfIsNotRunning(databaseContainerName,
                         $"run --name {databaseContainerName} " +
                         $"-p 10000:10000 " +
                         $"-p 10001:10001 " +
                         $"-p 10002:10002 " +
-                        $"--network {network} " +
+                        $"--network {DockerManager.NETWORK} " +
                         $"-d {ImageName}");
 
                     Thread.Sleep(3000);

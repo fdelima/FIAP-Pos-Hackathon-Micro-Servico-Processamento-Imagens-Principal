@@ -10,15 +10,16 @@
         public ComponentTestsBase()
         {
             _tests += 1;
-            
+
             _apiTest = new ApiTestFixture();
 
             _azuriteTestFixture = new AzuriteTestFixture(
                 databaseContainerName: "azurite-processamento-imagens-principal-component-test");
 
             _mongoTestFixture = new MongoTestFixture(
-                databaseContainerName: "mongodb-processamento-imagens-principal-component-test", port: "27021");
-            
+                databaseContainerName: "mongodb-processamento-imagens-principal-component-test",
+                port: "27019");
+
             Thread.Sleep(15000);
 
         }
