@@ -26,7 +26,7 @@ namespace TestProject.Infra
                         $"-p 10000:10000 " +
                         $"-p 10001:10001 " +
                         $"-p 10002:10002 " +
-                        $"-v azurite_data_test:/data" +
+                        $"-v azurite_data_test:/data " +
                         $"--network {DockerManager.NETWORK} " +
                         $"-d {ImageName}");
 
