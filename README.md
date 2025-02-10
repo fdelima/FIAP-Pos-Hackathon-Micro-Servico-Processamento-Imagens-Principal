@@ -31,7 +31,7 @@ Atender à demanda dos investidores por uma solução mais completa, que permita
     > *  [Microserviço de produção](https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Producao)
 >
  - #### O projeto deve ter testes que garantam a sua qualidade;
-    > * **Teste realizados**
+    > * **Teste realizados**  
     > Realizado teste de componente em BDD.  
     > Realizado teste de integração.  
     > Realizado teste unitários.  

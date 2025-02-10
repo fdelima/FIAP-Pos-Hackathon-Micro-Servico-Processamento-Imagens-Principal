@@ -114,5 +114,36 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Api.C
             return ExecuteCommand(await _controller.DeleteAsync(id));
         }
 
+        /// <summary>
+        /// Download zip do ProcessamentoImagem cadastrado.
+        /// </summary>
+        /// <param name="id">Identificador do ProcessamentoImagem cadastrado.</param>
+        /// <returns>Retorna o result do ProcessamentoImagem cadastrado.</returns>
+        /// <response code="200">Download ProcessamentoImagem com sucesso.</response>
+        /// <response code="400">Erros de validação dos parâmetros para download do ProcessamentoImagem.</response>
+        [HttpGet("Download/{id}")]
+        [ProducesResponseType(typeof(ModelResult), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(ModelResult), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<IActionResult> DownloadFile(Guid id)
+        {
+            return ExecuteCommand(await _controller.DownloadAsync(id));           
+        }
+
+        /// <summary>
+        /// Recupera status o ProcessamentoImagem cadastrado pelo seu Id
+        /// </summary>
+        /// <returns>Status do ProcessamentoImagem encontrada</returns>
+        /// <response code="200">ProcessamentoImagem encontrada ou nulo</response>
+        /// <response code="400">Erro ao recuperar ProcessamentoImagem cadastrado</response>
+        [HttpGet("Status/{id}")]
+        [ProducesResponseType(typeof(ModelResult), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(ModelResult), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<IActionResult> StatusById(Guid id)
+        {
+            return ExecuteCommand(await _controller.StatusByIdAsync(id));
+        }
+
     }
 }

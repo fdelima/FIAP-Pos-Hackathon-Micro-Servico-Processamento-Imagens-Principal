@@ -26,12 +26,12 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Infra
             await blobClient.UploadAsync(fileStream, true);
         }
 
-        public async Task DownloadFileAsync(string containerName, string fileName, string localFilePath)
+        public async Task DownloadFileAsync(string containerName, string fileName, Stream destination)
         {
             var containerClient = _blobServiceClient.GetBlobContainerClient(containerName);
 
             var blobClient = containerClient.GetBlobClient(fileName);
-            await blobClient.DownloadToAsync(localFilePath);
+            await blobClient.DownloadToAsync(destination);
         }
 
         public async Task DeleteFileAsync(string containerName, string fileName)

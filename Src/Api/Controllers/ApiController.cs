@@ -12,7 +12,17 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Api.C
         protected IActionResult ExecuteCommand(ModelResult result)
         {
             if (result.IsValid)
-                return Ok(result);
+            {
+                if (result.ModelStream != null)
+                {
+                    if (result.Messages.Count == 0)
+                        return File(result.ModelStream.ToArray(), "application/octet-stream");
+
+                    return File(result.ModelStream.ToArray(), "application/octet-stream", result.Messages[0]);
+                }
+                else
+                    return Ok(result);
+            }
 
             return BadRequest(result);
         }

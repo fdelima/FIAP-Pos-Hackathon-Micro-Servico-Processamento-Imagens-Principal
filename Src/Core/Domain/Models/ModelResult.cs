@@ -18,6 +18,7 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
         /// </summary>
         /// <param name="model">model</param>
         public ModelResult(object model) => Model = model;
+        public ModelResult(MemoryStream model) => ModelStream = model;
 
         /// <summary>
         /// lista de mensagens
@@ -34,6 +35,7 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
         /// Model
         /// </summary>
         public object Model { get; }
+        public MemoryStream ModelStream { get; }
 
         /// <summary>
         /// Retorna se é válido

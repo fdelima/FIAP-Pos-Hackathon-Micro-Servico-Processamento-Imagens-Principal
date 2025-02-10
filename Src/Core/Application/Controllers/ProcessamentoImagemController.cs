@@ -229,5 +229,35 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Appli
             ProcessamentoImagemReceiverMessageInQueueCommand command = new();
             return await _mediator.Send(command);
         }
+
+        /// <summary>
+        /// Download do arquivos
+        /// </summary>
+        public async Task<ModelResult> DownloadAsync(Guid id)
+        {
+            var resultFind = await FindByIdAsync(id);
+            if (resultFind.IsValid)
+            {
+                var destination = new MemoryStream();
+                await _storageService.DownloadFileAsync(Constants.BLOB_CONTAINER_NAME, $"{id.ToString()}.zip", destination);
+                var result = new ModelResult(destination);
+                result.AddMessage(((ProcessamentoImagem)resultFind.Model).NomeArquivoZipDownload);
+                return result;
+            }
+            return resultFind;
+        }
+
+        /// <summary>
+        /// Status do processamento
+        /// </summary>
+        public async Task<ModelResult> StatusByIdAsync(Guid id)
+        {
+            var resultFind = await FindByIdAsync(id);
+            if (resultFind.IsValid)
+            {
+                return ModelResultFactory.SucessResult(new StatusModel((ProcessamentoImagem)resultFind.Model));
+            }
+            return resultFind;
+        }
     }
 }

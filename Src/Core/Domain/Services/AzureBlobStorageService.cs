@@ -16,9 +16,9 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
             return _gateway.DeleteFileAsync(containerName, fileName);
         }
 
-        public Task DownloadFileAsync(string containerName, string fileName, string localFilePath)
+        public Task DownloadFileAsync(string containerName, string fileName, Stream destination)
         {
-            return _gateway.DownloadFileAsync(containerName, fileName, localFilePath);
+            return _gateway.DownloadFileAsync(containerName, fileName, destination);
         }
 
         public Task UploadFileAsync(string containerName, string fileName, Stream fileStream)

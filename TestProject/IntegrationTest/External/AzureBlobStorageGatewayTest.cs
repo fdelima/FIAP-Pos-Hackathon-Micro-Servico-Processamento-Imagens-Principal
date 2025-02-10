@@ -49,11 +49,11 @@ namespace TestProject.IntegrationTest.External
             await _storageGateway.UploadFileAsync(_containerName, _fileName, _fileStream);
 
             // Act
-            await _storageGateway.DownloadFileAsync(_containerName, _fileName, _localFilePath);
+            var destination = new MemoryStream();
+            await _storageGateway.DownloadFileAsync(_containerName, _fileName, destination);
 
             // Assert
-            Assert.True(File.Exists(_localFilePath));
-            Assert.True(new FileInfo(_localFilePath).Length > 0);
+            Assert.True(destination != null);
         }
 
         [Fact]

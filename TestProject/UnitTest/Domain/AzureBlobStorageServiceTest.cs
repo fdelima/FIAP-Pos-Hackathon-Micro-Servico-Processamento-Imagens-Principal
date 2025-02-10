@@ -39,10 +39,11 @@ namespace TestProject.UnitTest.Domain
             var localFilePath = "local-path.txt";
 
             // Act
-            await _service.DownloadFileAsync(containerName, fileName, localFilePath);
+            var destination = new MemoryStream();
+            await _service.DownloadFileAsync(containerName, fileName, destination);
 
             // Assert
-            await _storageGatewaySubstitute.Received(1).DownloadFileAsync(containerName, fileName, localFilePath);
+            await _storageGatewaySubstitute.Received(1).DownloadFileAsync(containerName, fileName, destination);
         }
 
         [Fact]

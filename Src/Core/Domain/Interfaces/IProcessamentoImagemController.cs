@@ -8,6 +8,7 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
     /// </summary>
     public interface IProcessamentoImagemController : IController<ProcessamentoImagem>
     {
+
         /// <summary>
         /// Insere o objeto
         /// </summary>
@@ -23,5 +24,15 @@ namespace FIAP.Pos.Hackathon.Micro.Servico.Processamento.Imagens.Principal.Domai
         /// Envia as mensagens dos arquivos recebidos para a fila.
         /// </summary>
         Task<ModelResult> SendMessageToQueueAsync();
+
+        /// <summary>
+        /// Download do arquivo
+        /// </summary>
+        Task<ModelResult> DownloadAsync(Guid id);
+        
+        /// <summary>
+        /// Status do processamento
+        /// </summary>
+        Task<ModelResult> StatusByIdAsync(Guid id);
     }
 }
