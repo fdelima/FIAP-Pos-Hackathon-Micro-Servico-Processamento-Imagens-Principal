@@ -32,10 +32,13 @@ Atender à demanda dos investidores por uma solução mais completa, que permita
 >
  - #### O projeto deve ter testes que garantam a sua qualidade;
     > * **Teste realizados**
-    ![Teste realizados](/Documentacao/principal-tests.png)     
     > Realizado teste de componente em BDD.  
     > Realizado teste de integração.  
     > Realizado teste unitários.  
+    > * - Microserviço Principal
+    ![Teste realizados](/Documentacao/principal-tests.png)     
+    > * - Microserviço Producao
+    ![Teste realizados](/Documentacao/producao-tests.png)     
     >    
     > * **Code coverage**
     > * - Microserviço Principal
