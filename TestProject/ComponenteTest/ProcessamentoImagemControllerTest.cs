@@ -37,8 +37,6 @@ namespace TestProject.ComponenteTest
         [Given(@"Recebendo um ProcessamentoImagem")]
         public void PrepararProcessamentoImagem()
         {
-
-
             _ProcessamentoImagem = new ProcessamentoImagem
             {
                 Data = DateTime.Now,

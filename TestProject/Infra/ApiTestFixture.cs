@@ -4,7 +4,7 @@ namespace TestProject.Infra
 {
     public class ApiTestFixture : IDisposable
     {
-        const string port = "5000";
+        const string _port = "5000";
 
         //api
         private const string ImageName = "fdelima/fiap-pos-hackathon-micro-servico-processamento-imagens-principal-gurpo-71-api:fase5";
@@ -27,7 +27,7 @@ namespace TestProject.Infra
                     DockerManager.RunContainerIfIsNotRunning(DatabaseContainerName,
                         $"run --name {DatabaseContainerName} " +
                         $"-e ASPNETCORE_ENVIRONMENT=Test " +
-                        $"-p {port}:8080 " +
+                        $"-p {_port}:8080 " +
                         $"--network {DockerManager.NETWORK} " +
                         $"-d {ImageName}");
 
@@ -39,7 +39,7 @@ namespace TestProject.Infra
         public HttpClient GetClient()
         {
             _client = new HttpClient();
-            _client.BaseAddress = new Uri($"http://localhost:{port}/");
+            _client.BaseAddress = new Uri($"http://localhost:{_port}/");
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));

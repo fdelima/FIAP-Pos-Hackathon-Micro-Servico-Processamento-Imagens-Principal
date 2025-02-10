@@ -10,12 +10,13 @@ namespace TestProject.Infra
 
         public MongoTestFixture(string databaseContainerName, string port)
         {
+            _databaseContainerName = databaseContainerName;
+            _port = port;
+
             if (DockerManager.UseDocker())
             {
                 if (!DockerManager.ContainerIsRunning(databaseContainerName))
                 {
-                    _port = port;
-                    _databaseContainerName = databaseContainerName;
                     DockerManager.PullImageIfDoesNotExists(_imageName);
                     DockerManager.KillContainer(databaseContainerName);
                     DockerManager.KillVolume(databaseContainerName);

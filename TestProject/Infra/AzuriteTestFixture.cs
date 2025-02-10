@@ -4,15 +4,16 @@ namespace TestProject.Infra
     {
         private const string ImageName = "mcr.microsoft.com/azure-storage/azurite:latest";
 
-        string _port; string _databaseContainerName;
+        string _databaseContainerName;
 
         public AzuriteTestFixture(string databaseContainerName)
         {
+            _databaseContainerName = databaseContainerName;
+
             if (DockerManager.UseDocker())
             {
                 if (!DockerManager.ContainerIsRunning(databaseContainerName))
                 {
-                    _databaseContainerName = databaseContainerName;
                     DockerManager.PullImageIfDoesNotExists(ImageName);
                     DockerManager.KillContainer(databaseContainerName);
                     DockerManager.KillVolume(databaseContainerName);
