@@ -38,8 +38,12 @@ Atender à demanda dos investidores por uma solução mais completa, que permita
     > Realizado teste unitários.  
     >    
     > * **Code coverage**
-    ![Code coverage 81%](/Documentacao/code-coverage-principal.png)  
+    > * - Microserviço Principal
+    ![Microserviço Principal code coverage 81%](/Documentacao/code-coverage-principal.png)  
     [Veja aqui detalhes do Xunit Code Coverage](https://html-preview.github.io/?url=https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal/blob/develop/TestProject/CodeCoverage/Report/index.html)
+    > * - Microserviço Producao
+    ![Microserviço Produção code coverage 94%](/Documentacao/code-coverage-producao.png)  
+    [Veja aqui detalhes do Xunit Code Coverage](https://html-preview.github.io/?url=https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Producao/blob/develop/TestProject/CodeCoverage/Report/index.htm)    
     >    
     > * **DAST Vulnerability test**
     ![DAST Vulnerability test](/Documentacao/ZAP-DAST-Principal.png)  
@@ -54,7 +58,7 @@ Atender à demanda dos investidores por uma solução mais completa, que permita
     - Microserviço processamento de imagem produção    
         > * [Pipeline workflow](https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Producao/actions/runs/13215807809/workflow)
         > * [Pipeline actions](https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Producao/actions)
-        > * [Pipeline execução](??)
+        > * [Pipeline execução](https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Producao/actions/runs/13232879274/job/36932786224)
 # Entregáveis:
  - Documentação da arquitetura proposta para o projeto;
    > *  ![Arquitetura proposta](/Documentacao/FIAP-Pos-Tech-Hackathon-Arquitetura.drawio.svg)
