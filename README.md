@@ -19,6 +19,19 @@ Os investidores gostaram tanto do projeto, que querem investir em uma versão on
 
 Atender à demanda dos investidores por uma solução mais completa, que permita o envio de vídeos e o download de imagens processadas, expandindo as funcionalidades do projeto existente.
 
+### pré requisitos esperados para este projeto:
+ - #### A nova versão do sistema deve processar mais de um vídeo ao mesmo tempo;
+    > * Utilizamos sistema de mensageria que processa o video assincronamente.
+
+ - #### Em caso de picos o sistema não deve perder uma requisição;
+     > * Utilizamos o padrão de projeto Transactional outbox no worker que fica enviando para fila as requisições feitas que ainda não foram enviadas para processamento. Mais detalhes no arquivo QueueWorker.cs
+ - #### O Sistema deve ser protegido por usuário e senha;
+     > * Utilizamos autenticação com microsoft Entra Id
+ - #### O fluxo deve ter uma listagem de status dos vídeos de um usuário;
+     > * Endpoint: api/ProcessamentoImagem/Status/{id} que retorna o status a partir do id do processamento realizado.
+ - #### Em caso de erro um usuário pode ser notificado (email ou um outro meio de comunicação
+     > * Criamos endpoints de notificação para que o front-end da aplicação possa ter as notificações do usuário.
+
 ### Requisitos técnicos:
  - #### O sistema deve persistir os dados;
     > * Utilizamos NoSql em nosso microserviço de processamento de imagem principal.
@@ -43,14 +56,14 @@ Atender à demanda dos investidores por uma solução mais completa, que permita
     > * **Code coverage**
     > * - Microserviço Principal
     ![Microserviço Principal code coverage 81%](/Documentacao/code-coverage-principal.png)  
-    [Xunit Code Coverage :: Veja aqui mais detalhes](https://html-preview.github.io/?url=https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal/blob/develop/TestProject/CodeCoverage/Report/index.html)
+    [Xunit Code Coverage :: Veja aqui mais detalhes](https://html-preview.github.io/?url=https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal/blob/main/TestProject/CodeCoverage/Report/index.html)
     > * - Microserviço Producao
     ![Microserviço Produção code coverage 94%](/Documentacao/code-coverage-producao.png)  
-    [Xunit Code Coverage :: Veja aqui mais detalhes](https://html-preview.github.io/?url=https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Producao/blob/develop/TestProject/CodeCoverage/Report/index.htm)    
+    [Xunit Code Coverage :: Veja aqui mais detalhes](https://html-preview.github.io/?url=https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Producao/blob/main/TestProject/CodeCoverage/Report/index.htm)    
     >    
     > * **DAST vulnerability test**  
     ![DAST Vulnerability](/Documentacao/ZAP-DAST-Principal.png)  
-    > [DAST Vulnerability :: Veja aqui mais detalhes](https://html-preview.github.io/?url=https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal/blob/develop/TestProject/ZAP-DAST/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal-2025-02-09-ZAP-Report-.html)
+    > [DAST Vulnerability :: Veja aqui mais detalhes](https://html-preview.github.io/?url=https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal/blob/main/TestProject/ZAP-DAST/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Principal-2025-02-09-ZAP-Report-.html)
  >
  - CI/CD da aplicacao
     - Microserviço processamento de imagem principal
@@ -87,4 +100,4 @@ Atender à demanda dos investidores por uma solução mais completa, que permita
     > *  [Microserviço de produção](https://github.com/fdelima/FIAP-Pos-Hackathon-Micro-Servico-Processamento-Imagens-Producao)
 >
  - Vídeo de nomáximo 10 minutos apresentando: Documentação, Arquitetura escolhida e o projeto funcionando.
-    > *  [Video Yutube]()
+    > *  [Video Yutube](https://youtu.be/oQUQiAAx4Rw)
