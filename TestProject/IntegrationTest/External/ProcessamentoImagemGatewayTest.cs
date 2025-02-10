@@ -12,16 +12,16 @@ namespace TestProject.IntegrationTest.External
     /// <summary>
     /// Classe de teste.
     /// </summary>
-    public partial class ProcessamentoImagemGatewayTest : IClassFixture<IntegrationTestsBase>
+    public partial class ProcessamentoImagemGatewayTest : IClassFixture<BaseTests>
     {
         internal readonly MongoTestFixture _mongoTestFixture;
 
         /// <summary>
         /// Construtor da classe de teste.
         /// </summary>
-        public ProcessamentoImagemGatewayTest(IntegrationTestsBase data)
+        public ProcessamentoImagemGatewayTest(BaseTests data)
         {
-            _mongoTestFixture = data._mongoTestFixture;
+            _mongoTestFixture = data._mongoIntegrationTestFixture;
         }
 
         /// <summary>

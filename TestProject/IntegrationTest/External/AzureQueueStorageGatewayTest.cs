@@ -7,13 +7,13 @@ using TestProject.Infra;
 
 namespace TestProject.IntegrationTest.External
 {
-    public class AzureQueueStorageGatewayTest : IClassFixture<IntegrationTestsBase>
+    public class AzureQueueStorageGatewayTest : IClassFixture<BaseTests>
     {
         private readonly IMessagerGateway _messagerGateway;
         private readonly string _queueToProcessName;
         private readonly string _queueProcessedName;
 
-        public AzureQueueStorageGatewayTest(IntegrationTestsBase data)
+        public AzureQueueStorageGatewayTest(BaseTests data)
         {
             // Configuração do ambiente de teste
             var configuration = new ConfigurationBuilder()

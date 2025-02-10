@@ -12,7 +12,7 @@ namespace TestProject.ComponenteTest
     /// Classe de teste.
     /// </summary>
     [FeatureFile("./BDD/Features/ControlarNotificacaos.feature")]
-    public class NotificacaoControllerTest : Feature, IClassFixture<ComponentTestsBase>
+    public class NotificacaoControllerTest : Feature, IClassFixture<BaseTests>
     {
         private readonly ApiTestFixture _apiTest;
         private ModelResult expectedResult;
@@ -21,7 +21,7 @@ namespace TestProject.ComponenteTest
         /// <summary>
         /// Construtor da classe de teste.
         /// </summary>
-        public NotificacaoControllerTest(ComponentTestsBase data)
+        public NotificacaoControllerTest(BaseTests data)
         {
             _apiTest = data._apiTest;
         }

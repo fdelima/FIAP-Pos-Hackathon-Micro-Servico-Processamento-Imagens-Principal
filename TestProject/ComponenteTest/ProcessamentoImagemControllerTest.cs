@@ -12,7 +12,7 @@ using Xunit.Gherkin.Quick;
 namespace TestProject.ComponenteTest
 {
     [FeatureFile("./BDD/Features/ControlarProcessamentoImagens.feature")]
-    public class ProcessamentoImagemControllerTest : Feature, IClassFixture<ComponentTestsBase>
+    public class ProcessamentoImagemControllerTest : Feature, IClassFixture<BaseTests>
     {
         private readonly ApiTestFixture _apiTest;
         private ModelResult expectedResult;
@@ -22,7 +22,7 @@ namespace TestProject.ComponenteTest
         /// <summary>
         /// Construtor da classe de teste.
         /// </summary>
-        public ProcessamentoImagemControllerTest(ComponentTestsBase data)
+        public ProcessamentoImagemControllerTest(BaseTests data)
         {
             _apiTest = data._apiTest;
         }
